@@ -10,23 +10,10 @@
     /*grid-gap: 10px;*/
 }
 
-.header {
-    grid-area: header;
-    background-color: green;
-}
 
-.header img {
-   width: 20px;
-}
-.nav {
-    grid-area: nav;
-    background-color: burlywood;
-}
 
-.content {
-    grid-area: content;
-    background-color: cornflowerblue;
-}
+
+
 
 
 /*.App {*/
