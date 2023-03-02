@@ -1,16 +1,21 @@
 import React from "react";
 import s from './Post.module.css';
 
-const Post = () => {
+type PropsType = {
+    message: string
+}
+
+const Post = (props:PropsType) => {
+
     return (
         <div className={s.item}>
             <img src='https://oper.ru/static/data/gallery/l1048753984.jpg'/>
-            post 1
+            {props.message}
             <div>
                 <span>like</span>
             </div>
         </div>
     )
-}
+};
 
 export default Post;
