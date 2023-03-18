@@ -4,16 +4,12 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 
-type DialogsPropsType = {
-    message: string
-    id: number
-}
+// type DialogsPropsType = {
+//     message: string
+//     id: number
+// }
 
-type dialogsElements = {
-    id: number
-}
-
-const Dialogs = (props: DialogsPropsType) => {
+const Dialogs = () => {
 
     let dialogs = [
         {id: 1, name: 'Dimych'},
