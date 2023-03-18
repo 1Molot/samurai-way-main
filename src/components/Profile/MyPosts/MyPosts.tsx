@@ -2,13 +2,14 @@ import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
+
 type MyPostsType = {
     id:number
     message:string
     likesCont:number
 }
 
-const MyPosts = (props:MyPostsType) => {
+const MyPosts = (props:Partial<MyPostsType>) => {
 
     let posts = [
         {id: 1, message: 'Hi, how are you?', likesCont: 12},

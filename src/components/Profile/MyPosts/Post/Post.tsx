@@ -3,7 +3,7 @@ import s from './Post.module.css';
 
 type PropsType = {
     message: string
-    likesCount: string
+    likesCount: number
 }
 
 const Post = (props: PropsType) => {
