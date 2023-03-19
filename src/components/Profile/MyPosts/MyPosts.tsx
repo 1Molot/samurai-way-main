@@ -7,15 +7,14 @@ type MyPostsType = {
     id:number
     message:string
     likesCont:number
+    posts:string
+    map:string
 }
+//Partial<MyPostsType>
+const MyPosts = (props:MyPostsType) => {
 
-const MyPosts = (props:Partial<MyPostsType>) => {
+    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCont}/>)
 
-    let posts = [
-        {id: 1, message: 'Hi, how are you?', likesCont: 12},
-        {id: 2, message: 'It\'s my first post', likesCont: 11},
-    ]
-    let postsElements = posts.map(p => <Post message={p.message} likesCount={p.likesCont}/>)
     return (
         <div>
             <div className={s.postsBlock}>
