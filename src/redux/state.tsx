@@ -1,7 +1,38 @@
 import React from "react";
 
 
-let state = {
+export type StateType = {
+    profilePage: ProfilePageType,
+    dialogsPage: DialogsPageType
+}
+export type ProfilePageType = {
+    posts: PostsType
+}
+export type DialogsPageType = {
+    dialogs: DialogsType
+    messages: MessagesType
+}
+export type PostsType = PostType[]
+
+export type PostType = {
+    id: number
+    message: string
+    likesCont: number
+}
+
+export type DialogType = {
+    id: number
+    name: string
+}
+export type DialogsType = DialogType[]
+
+export type MessageType = {
+    id: number
+    message: string
+}
+export type MessagesType = MessageType[]
+
+let state: StateType = {
     profilePage: {
         posts: [
             {id: 1, message: 'Hi, how are you?', likesCont: 12},
@@ -26,9 +57,7 @@ let state = {
             {id: 5, message: 'Yo'},
         ]
     },
-    sidebar:{
-
-    }
+    // sidebar: {}
 }
 
 export default state;
