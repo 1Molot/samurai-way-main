@@ -11,16 +11,14 @@ import state from "./redux/state";
 const App = (props) => {
 
     return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header/>
-                <Navbar/>
-                <div className='app-wrapper-content'>
-                    <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}/>}/>
-                    <Route path="/profile" render={() => <Profile state={props.state.profilePage}/>}/>
-                </div>
+        <div className='app-wrapper'>
+            <Header/>
+            <Navbar/>
+            <div className='app-wrapper-content'>
+                <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                <Route path="/profile" render={() => <Profile state={props.state.profilePage}/>}/>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 
