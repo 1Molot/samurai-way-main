@@ -1,4 +1,5 @@
 import React from "react";
+import {rerenderEntireTree} from "../render";
 
 
 export type StateType = {
@@ -60,14 +61,15 @@ let state: StateType = {
     // sidebar: {}
 }
 
-export let addPost = (postMessage) => {
-    let newPost = {
+export let addPost = (postMessage: string) => {
+    let newPost: PostType = {
         id: 5,
         message: postMessage,
-        likesCount: 0
+        likesCont: 0
     };
 
     state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state);
 }
 
 

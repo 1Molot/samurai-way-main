@@ -10,6 +10,7 @@ import state, {StateType} from "./redux/state";
 
 type PropsAppType={
     state:StateType
+    addPost: (postValue: string) => void
 }
 
 const App = (props:PropsAppType) => {
