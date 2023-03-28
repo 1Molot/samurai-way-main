@@ -19,11 +19,15 @@ const MyPosts = (props: MyPostsType) => {
         if( newPostElement.current) {
             let text = newPostElement.current.value;
             props.addPost(text);
-            newPostElement.current.value = '';
+            // newPostElement.current.value = '';
+            props.updateNewPostText('');
         }
-
     }
 
+    let onPostChange = () => {
+        let text = newPostElement.current.value;
+        props.updateNewPostText(text);
+    }
 
     return (
         <div>
@@ -32,7 +36,7 @@ const MyPosts = (props: MyPostsType) => {
             </div>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post
