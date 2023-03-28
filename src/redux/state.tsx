@@ -1,6 +1,4 @@
 import React from "react";
-import {rerenderEntireTree} from "../render";
-
 
 export type StateType = {
     profilePage: ProfilePageType,
@@ -15,24 +13,26 @@ export type DialogsPageType = {
     messages: MessagesType
 }
 export type PostsType = PostType[]
-
 export type PostType = {
     id: number
     message: string
     likesCont: number
 }
-
 export type DialogType = {
     id: number
     name: string
 }
+// export type UpdateNewPostTextType =
 export type DialogsType = DialogType[]
-
 export type MessageType = {
     id: number
     message: string
 }
 export type MessagesType = MessageType[]
+
+let rerenderEntireThree = () => {
+    console.log('State changed');
+}
 
 let state: StateType = {
     profilePage: {
@@ -64,7 +64,7 @@ let state: StateType = {
 
 window.state = state;
 
-export let addPost = () => {   //postMessage: string
+export const addPost = () => {   //postMessage: string
     let newPost: PostType = {
         id: 5,
         message: state.profilePage.newPostText,
@@ -75,11 +75,15 @@ export let addPost = () => {   //postMessage: string
     state.profilePage.newPostText = '';
     rerenderEntireTree(state);
 }
-export let updateNewPostText = (newText: string) => {
+export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 }
 
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer; //наблюдатель(pater) button.addEventListener
+}
 
 export default state;
+// store - OOP
 
