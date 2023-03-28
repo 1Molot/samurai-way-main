@@ -5,8 +5,9 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {DialogsPageType, ProfilePageType} from "../../redux/state";
 
 type ProfilePropsType = {
-    state:ProfilePageType
+    profilePage:ProfilePageType
     addPost: (postValue: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
 const Profile = (props:ProfilePropsType) => {

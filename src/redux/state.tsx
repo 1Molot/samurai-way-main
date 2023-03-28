@@ -30,7 +30,7 @@ export type MessageType = {
 }
 export type MessagesType = MessageType[]
 
-let rerenderEntireThree = () => {
+let rerenderEntireThree = (state: StateType) => {
     console.log('State changed');
 }
 
@@ -62,6 +62,7 @@ let state: StateType = {
     // sidebar: {}
 }
 
+//@ts-ignore
 window.state = state;
 
 export const addPost = () => {   //postMessage: string
@@ -73,17 +74,18 @@ export const addPost = () => {   //postMessage: string
 
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    rerenderEntireTree(state);
+    rerenderEntireThree(state);
 }
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
+    rerenderEntireThree(state);
 }
 
-export const subscribe = (observer) => {
-    rerenderEntireTree = observer; //наблюдатель(pater) button.addEventListener
+export const subscribe = (observer: (state: StateType) => void) => {
+    rerenderEntireThree = observer; //наблюдатель(pater) button.addEventListener
 }
 
 export default state;
 // store - OOP
+// перепаковать state засунуть все в store.export v index
 
