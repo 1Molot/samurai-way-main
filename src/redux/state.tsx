@@ -58,38 +58,39 @@ let store = {
         },
         // sidebar: {}
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber(state: StateType) {
         console.log('State changed');
     },
-    addPost() {   //postMessage: string
-        let newPost: PostType = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCont: 0
-        };
 
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
+    getState() {
+        return this._state;
     },
     subscribe(observer: (state: StateType) => void) {
         this._callSubscriber = observer; //наблюдатель(pater) button.addEventListener
+    },
+
+    dispatch(action) { //{type:'ADD-POST'}
+        if (action.type === 'ADD-POST') {
+            let newPost: PostType = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCont: 0
+            };
+
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
     }
 }
 
-
 export default store;
-
 //@ts-ignore
 window.state = store;
-
-// store - OOP
-// перепаковать state засунуть все в store.export v index
+//
+// // store - OOP
+// // перепаковать state засунуть все в store.export v index
 

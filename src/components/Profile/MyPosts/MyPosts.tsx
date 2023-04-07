@@ -18,17 +18,21 @@ const MyPosts = (props: MyPostsType) => {
     let newPostElement: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
     let addPost = () => {
-        if (newPostElement.current) {
-            let text = newPostElement.current.value;
-            props.addPost(text);
-            // newPostElement.current.value = '';
-            props.updateNewPostText('');
-        }
+    //     if (newPostElement.current) {
+    //         let text = newPostElement.current.value;
+    //         props.dispatch({type: 'ADD-POST'});
+    //         // newPostElement.current.value = '';
+    //         props.updateNewPostText('');
+    //     }
+        props.dispatch({type: 'ADD-POST'});
     }
 
     let onPostChange = () => {
         let text = newPostElement.current?.value as string;
-        props.updateNewPostText(text);
+        // let text = newPostElement.current.value;
+        let action = {type: 'UPDATE-NEW-POST-TEXT',newText: text};
+        // props.dispatch({type: 'UPDATE-NEW-POST-TEXT',newText: text});
+        props.dispatch(action);
     }
 
     return (
