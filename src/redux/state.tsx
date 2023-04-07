@@ -30,62 +30,66 @@ export type MessageType = {
 }
 export type MessagesType = MessageType[]
 
-let rerenderEntireThree = (state: StateType) => {
-    console.log('State changed');
+let store = {
+    _state: {
+        profilePage: {
+            posts: [
+                {id: 1, message: 'Hi, how are you?', likesCont: 12},
+                {id: 2, message: 'It\'s my first post', likesCont: 11},
+            ],
+            newPostText: 'it-kamasutra.com'
+        },
+        dialogsPage: {
+            dialogs: [
+                {id: 1, name: 'Dimych'},
+                {id: 2, name: 'Andrew'},
+                {id: 3, name: 'Sveta'},
+                {id: 4, name: 'Sasha'},
+                {id: 5, name: 'Victor'},
+                {id: 6, name: 'Valera'},
+            ],
+            messages: [
+                {id: 1, message: 'Hi'},
+                {id: 2, message: 'How is your it-kamasutra?'},
+                {id: 3, message: 'Yo'},
+                {id: 4, message: 'Yo'},
+                {id: 5, message: 'Yo'},
+            ]
+        },
+        // sidebar: {}
+    },
+    getState() {
+        return this._state;
+    },
+    _callSubscriber(state: StateType) {
+        console.log('State changed');
+    },
+    addPost() {   //postMessage: string
+        let newPost: PostType = {
+            id: 5,
+            message: this._state.profilePage.newPostText,
+            likesCont: 0
+        };
+
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+        this._callSubscriber(this._state);
+    },
+    updateNewPostText(newText: string) {
+        this._state.profilePage.newPostText = newText;
+        this._callSubscriber(this._state);
+    },
+    subscribe(observer: (state: StateType) => void) {
+        this._callSubscriber = observer; //наблюдатель(pater) button.addEventListener
+    }
 }
 
-let state: StateType = {
-    profilePage: {
-        posts: [
-            {id: 1, message: 'Hi, how are you?', likesCont: 12},
-            {id: 2, message: 'It\'s my first post', likesCont: 11},
-        ],
-        newPostText: 'it-kamasutra.com'
-    },
-    dialogsPage: {
-        dialogs: [
-            {id: 1, name: 'Dimych'},
-            {id: 2, name: 'Andrew'},
-            {id: 3, name: 'Sveta'},
-            {id: 4, name: 'Sasha'},
-            {id: 5, name: 'Victor'},
-            {id: 6, name: 'Valera'},
-        ],
-        messages: [
-            {id: 1, message: 'Hi'},
-            {id: 2, message: 'How is your it-kamasutra?'},
-            {id: 3, message: 'Yo'},
-            {id: 4, message: 'Yo'},
-            {id: 5, message: 'Yo'},
-        ]
-    },
-    // sidebar: {}
-}
+
+export default store;
 
 //@ts-ignore
-window.state = state;
+window.state = store;
 
-export const addPost = () => {   //postMessage: string
-    let newPost: PostType = {
-        id: 5,
-        message: state.profilePage.newPostText,
-        likesCont: 0
-    };
-
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = '';
-    rerenderEntireThree(state);
-}
-export const updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireThree(state);
-}
-
-export const subscribe = (observer: (state: StateType) => void) => {
-    rerenderEntireThree = observer; //наблюдатель(pater) button.addEventListener
-}
-
-export default state;
 // store - OOP
 // перепаковать state засунуть все в store.export v index
 
