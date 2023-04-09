@@ -1,11 +1,11 @@
 import React from "react";
-import {PostType} from "./state";
-import profileReducer from "./profile-reducer";
+import {DialogsPageType} from "./state";
+
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
-const dialogsReducer = (state, action) => {
+const dialogsReducer = (state: DialogsPageType, action: DialogsActionsType): DialogsPageType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessageBody = action.body;
@@ -23,9 +23,13 @@ const dialogsReducer = (state, action) => {
 
 export const sedMessageCreator = () => ({
     type: SEND_MESSAGE
-})
-export const updateNewMessageBodyCreator = (body) => ({
-    type: 'UPDATE_NEW_MESSAGE_BODY', body: body
-})
+} as const)
+export const updateNewMessageBodyCreator = (body: string) => ({
+    type: UPDATE_NEW_MESSAGE_BODY, body: body
+} as const)
+
+type SendMessageACType = ReturnType<typeof sedMessageCreator>
+type UpdateNewMessageBodyACType = ReturnType<typeof updateNewMessageBodyCreator>
+export type DialogsActionsType = SendMessageACType | UpdateNewMessageBodyACType
 
 export default dialogsReducer;

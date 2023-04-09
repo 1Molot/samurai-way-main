@@ -5,15 +5,13 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
-import state, {StateType} from "./redux/state";
-import store from "./redux/state";
+import state, {ActionsType, StateType, StoreType} from "./redux/state";
 
 
 type PropsAppType={
     state:StateType
-    addPost: (postValue: string) => void
-    updateNewPostText: (newText: string) => void
-   // dispatch
+    store: StoreType;
+    dispatch: (action: ActionsType) => void;
 }
 
 const App = (props:PropsAppType) => {

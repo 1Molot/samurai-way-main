@@ -2,11 +2,12 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {DialogsPageType, sedMessageCreator, StateType, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {sedMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {StoreType} from "../../redux/state";
 
 
 type DialogsPropsType = {
-    state: DialogsPageType
+    store: StoreType
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -17,13 +18,12 @@ const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = state.messages.map(message => <Message message={message.message}/>);
     let newMessageBody = state.newMessageBody;
 
-    let onSendMessageClick = (e:MouseEvent<HTMLButtonElement,MouseEvent>) => {
+    let onSendMessageClick = () => {
         props.store.dispatch(sedMessageCreator());
     }
-    let onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-    let body = e.target.value;
-    props.store.dispatch(updateNewMessageBodyCreator(body));
-
+    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let body = e.target.value;
+        props.store.dispatch(updateNewMessageBodyCreator(body));
     }
 
     return (
