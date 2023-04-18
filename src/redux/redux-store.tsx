@@ -18,3 +18,6 @@ let store = createStore(reducers);
 
 
 export default store;
+
+export class StateType {
+}

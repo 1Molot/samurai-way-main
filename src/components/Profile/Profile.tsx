@@ -3,7 +3,7 @@ import s from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ActionsType, DialogsPageType, ProfilePageType} from "../../redux/state";
-import MyPostsContainer from "./MyPosts/Post/MyPostsContainer";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {StateType} from "../../redux/store";
 
 type ProfilePropsType = {
@@ -23,7 +23,7 @@ const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer  store={props.store}/>
+            <MyPostsContainer  />
                      {/*          posts={props.profilePage.posts}*/}
                      {/*newPostText={props.profilePage.newPostText}*/}
                      {/*dispatch={props.dispatch}/>*/}
