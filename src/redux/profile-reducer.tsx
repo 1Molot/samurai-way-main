@@ -1,10 +1,19 @@
 import React from "react";
 import {PostType, ProfilePageType} from "./state";
 
+
+let initialState = {
+        posts: [
+            {id: 1, message: 'Hi, how are you?', likesCont: 12},
+            {id: 2, message: 'It\'s my first post', likesCont: 11},
+        ],
+        newPostText: 'it-kamasutra.com'
+    };
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-
-const profileReducer = (state: ProfilePageType, action: ProfileActionsType): ProfilePageType => {
+                          //ProfilePageType
+const profileReducer = (state= initialState, action: ProfileActionsType) => {        //ProfilePageType
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType = {

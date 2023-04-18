@@ -6,7 +6,7 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import state, {ActionsType, StateType, StoreType} from "./redux/state";
-
+//state изминили na store
 
 type PropsAppType={
     state:StateType

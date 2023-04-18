@@ -13,7 +13,7 @@ type DialogsPropsType = {
 const Dialogs = (props: DialogsPropsType) => {
 
     let state = props.store.getState().dialogsPage
-
+    
     let dialogsElements = state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
     let messagesElements = state.messages.map(message => <Message message={message.message}/>);
     let newMessageBody = state.newMessageBody;
