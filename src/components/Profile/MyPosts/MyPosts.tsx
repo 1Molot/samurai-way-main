@@ -9,6 +9,9 @@ type MyPostsType = {
     posts: PostsType
     newPostText: string
     dispatch: (action: ActionsType) => void
+    // updateNewPostText: (text: any) => void
+    // addPost: () => void;
+    //text:string
 }
 
 
@@ -18,14 +21,16 @@ const MyPosts = (props: MyPostsType) => {
 
     let newPostElement: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
+    let onAddPost = () => {
+        props.addPost(); //
+       // props.dispatch(addPostActionCreator());
     }
 
     let onPostChange = () => {
         let text = newPostElement.current?.value as string;
-        let action = updateNewPostTextActionCreator(text);
-        props.dispatch(action);
+        props.updateNewPostText(text); //
+       //  let action = updateNewPostTextActionCreator(text);
+       // props.dispatch(action);
     }
 
     return (
@@ -38,7 +43,7 @@ const MyPosts = (props: MyPostsType) => {
                     <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post
+                    <button onClick={onAddPost}>Add post
                     </button>
                 </div>
             </div>
