@@ -5,7 +5,6 @@ import MyPosts from "./MyPosts";
 import {text} from "stream/consumers";
 import {connect} from "react-redux";
 
-
 type MyPostsType = {
     posts: PostsType
     newPostText: string
@@ -14,7 +13,6 @@ type MyPostsType = {
     // addPost: () => void;
     //text:string
 }
-
 
 const mapStateToProps = (state) => {
     return {
