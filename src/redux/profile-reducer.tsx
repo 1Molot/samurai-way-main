@@ -15,39 +15,41 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 //ProfilePageType
 const profileReducer = (state = initialState, action: ProfileActionsType) => {        //ProfilePageType
     switch (action.type) {
-        case ADD_POST:{
+        case ADD_POST: {
             let newPost: PostType = {
                 id: 5,
                 message: state.newPostText,
                 likesCont: 0
             };
-            let stateCopy = {...state};
-            stateCopy.posts = [...state.posts];
-            stateCopy.posts.push(newPost);
-            stateCopy.newPostText = '';
-            return stateCopy;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText = ''
+            }
         }
-        case UPDATE_NEW_POST_TEXT:{
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return state
+        case
+        UPDATE_NEW_POST_TEXT: {
+            return {
+                ...state,
+                newPostText: action.newText
+            };
         }
+            return state
         default:
-            return state;
-
+            return state
     }
 
+    export type ProfileActionsType = AddPostACType | UpdateNewPostTextACType
 
-export const addPostActionCreator = () => ({
-    type: ADD_POST
-} as const)
-export const updateNewPostTextActionCreator = (text: string) => ({
-    type: UPDATE_NEW_POST_TEXT, newText: text
-} as const)
+    type AddPostACType = ReturnType<typeof addPostActionCreator>
+    export const addPostActionCreator = () => ({
+        type: ADD_POST
+    } as const)
 
+    type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextActionCreator>
+    export const updateNewPostTextActionCreator = (text: string) => ({
+        type: UPDATE_NEW_POST_TEXT, newText: text
+    } as const)
 
-type AddPostACType = ReturnType<typeof addPostActionCreator>
-type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextActionCreator>
-export type ProfileActionsType = AddPostACType | UpdateNewPostTextACType
-
-export default profileReducer;
+    export default profileReducer;

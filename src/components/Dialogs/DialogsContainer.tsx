@@ -22,11 +22,11 @@ let mapStateToProps = (props:StateType) => {
 }
 let mapDispatchToProps = (dispatch) => {    //callback
     return {
-        updateNewMessageBody: () => {
-            dispatch(sedMessageCreator());
+        updateNewMessageBody: (body) => {
+            dispatch(updateNewMessageBodyCreator(body));
         },
-        sedMessage: (body) => {
-          dispatch(updateNewMessageBodyCreator(body));
+        sedMessage: () => {
+            dispatch(sedMessageCreator());
         }
     }
 }
