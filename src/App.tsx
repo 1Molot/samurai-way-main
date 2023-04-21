@@ -7,12 +7,18 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import state, {ActionsType, StateType, StoreType} from "./redux/state";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import Users from "./components/Users/Users";
+
 //state изминили na store
 
 type PropsAppType={
     state:StateType
     store: StoreType;
     dispatch: (action: ActionsType) => void;
+}
+
+function UsersContainer() {
+    return null;
 }
 
 const App = (props:PropsAppType) => {
@@ -25,9 +31,10 @@ const App = (props:PropsAppType) => {
 
                 <Route path="/dialogs" render={() => <DialogsContainer />}/>
 
-                {/*<Route path="/profile" render={() => <Profile />}/>*/}
-                    {/*// profilePage={props.state.profilePage}*/}
+                <Route path="/profile" render={() => <Profile />}/>
+                {/*// profilePage={props.state.profilePage}*/}
                     {/*// dispatch={props.dispatch}*/}
+                <Route path="/users" render={() => <UsersContainer/> }/>
             </div>
         </div>
     );
