@@ -1,28 +1,21 @@
 import React from "react";
 import {sedMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
-import {StoreType} from "../../redux/state";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {DialogsPageType, ProfilePageType} from "../../redux/store";
+import {Dispatch} from "redux";
+import {AppStateType} from "../../redux/redux-store";
 
-
-// type DialogsPropsType = {
-//     store: StoreType
-// }
-export type StateType = {
-    profilePage: ProfilePageType,
-    dialogsPage: DialogsPageType
-}
 
                           //state
-let mapStateToProps = (props:StateType) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
-        dialogsPage:state.dialogsPage
+        dialogsPage: state.dialogsPage
     }
 }
-let mapDispatchToProps = (dispatch) => {    //callback
+let mapDispatchToProps = (dispatch: Dispatch) => {    //callback
     return {
-        updateNewMessageBody: (body) => {
+        updateNewMessageBody: (body: string) => {
             dispatch(updateNewMessageBodyCreator(body));
         },
         sedMessage: () => {
@@ -30,6 +23,8 @@ let mapDispatchToProps = (dispatch) => {    //callback
         }
     }
 }
+
+export type DialogsPropsType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
 
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 

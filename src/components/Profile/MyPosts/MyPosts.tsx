@@ -1,21 +1,18 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
-import {ActionsType, PostsType} from "../../../redux/state";
+import {MyPostsContainerProps} from "./MyPostsContainer";
 
+// type MyPostsType = {
+//     posts: PostsType
+//     newPostText: string
+//     dispatch: (action: ActionsType) => void
+//     // updateNewPostText: (text: any) => void
+//     // addPost: () => void;
+//     //text:string
+// }
 
-type MyPostsType = {
-    posts: PostsType
-    newPostText: string
-    dispatch: (action: ActionsType) => void
-    // updateNewPostText: (text: any) => void
-    // addPost: () => void;
-    //text:string
-}
-
-
-const MyPosts = (props: MyPostsType) => {
+const MyPosts = (props: MyPostsContainerProps) => {
 
     let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCont}/>)
 
@@ -23,14 +20,11 @@ const MyPosts = (props: MyPostsType) => {
 
     let onAddPost = () => {
         props.addPost(); //
-       // props.dispatch(addPostActionCreator());
     }
 
     let onPostChange = () => {
         let text = newPostElement.current?.value as string;
-        props.updateNewPostText(text); //
-       //  let action = updateNewPostTextActionCreator(text);
-       // props.dispatch(action);
+        props.updateNewPostText(text);
     }
 
     return (

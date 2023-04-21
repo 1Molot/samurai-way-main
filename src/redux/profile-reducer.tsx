@@ -1,5 +1,5 @@
 import React from "react";
-import {PostType, ProfilePageType} from "./state";
+import {PostType} from "./store";
 
 
 let initialState = {
@@ -12,8 +12,8 @@ let initialState = {
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-//ProfilePageType
-const profileReducer = (state = initialState, action: ProfileActionsType) => {        //ProfilePageType
+
+export const profileReducer = (state = initialState, action: ProfileActionsType) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost: PostType = {
@@ -24,7 +24,7 @@ const profileReducer = (state = initialState, action: ProfileActionsType) => {  
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText = ''
+                newPostText: ''
             }
         }
             return state
@@ -39,6 +39,7 @@ const profileReducer = (state = initialState, action: ProfileActionsType) => {  
         default:
             return state
     }
+}
 
     export type ProfileActionsType = AddPostACType | UpdateNewPostTextACType
 

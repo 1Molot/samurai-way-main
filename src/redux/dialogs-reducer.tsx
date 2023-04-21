@@ -1,5 +1,5 @@
 import React from "react";
-import {DialogsPageType} from "./state";
+
 
 let initialState = {
     dialogs: [
@@ -23,7 +23,7 @@ let initialState = {
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 ///DialogsPageType
-const dialogsReducer = (state = initialState, action: DialogsActionsType) => {
+export const dialogsReducer = (state = initialState, action: DialogsActionsType) => {
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
