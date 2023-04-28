@@ -3,18 +3,11 @@ import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {MyPostsContainerProps} from "./MyPostsContainer";
 
-// type MyPostsType = {
-//     posts: PostsType
-//     newPostText: string
-//     dispatch: (action: ActionsType) => void
-//     // updateNewPostText: (text: any) => void
-//     // addPost: () => void;
-//     //text:string
-// }
+
 
 const MyPosts = (props: MyPostsContainerProps) => {
 
-    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCont}/>)
+    let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCont}/>)
 
     let newPostElement: React.RefObject<HTMLTextAreaElement> = React.createRef();
 

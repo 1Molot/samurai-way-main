@@ -8,12 +8,10 @@ import {Route} from "react-router-dom";
 // import state, {ActionsType, StateType, StoreType} from "./redux/state";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Users from "./components/Users/Users";
+import UsersContainer from './components/Users/UsersContainer';
 
 //state изминили na store
 
-function UsersContainer() {
-    return null;
-}
 
 const App = () => {
 

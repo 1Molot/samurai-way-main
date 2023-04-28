@@ -6,14 +6,7 @@ import {Dispatch} from "redux";
 import {AppStateType} from "../../../redux/redux-store";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 
-// type MyPostsType = {
-//     posts: PostsType
-//     newPostText: string
-//     dispatch: (action: ActionsType) => void
-//     // updateNewPostText: (text: any) => void
-//     // addPost: () => void;
-//     //text:string
-// }
+
 
  const mapStateToProps = (state: AppStateType) => {
     return {
