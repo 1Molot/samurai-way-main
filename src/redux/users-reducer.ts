@@ -18,9 +18,9 @@ export type UsersType = UserType[]
 
 let initialState = {
     users: [] as UsersType,
-    pageSize:5 ,  //iz
-    totalUsersCount: 0,  //iz
-    currentPage: 2  //iz
+    pageSize:5 ,
+    totalUsersCount: 0,
+    currentPage: 1
 };
 
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'  //iz
