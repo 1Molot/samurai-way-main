@@ -2,7 +2,6 @@ import React from 'react';
 import styles from "./users.module.css";
 import usersPhoto from "../../assets/imges/user.png";
 import {UserType} from "../../redux/users-reducer";
-import {UsersProps} from "./UsersContainer";
 
 type UsersPropsType = {
     totalUsersCount: number

@@ -1,7 +1,6 @@
 import React from "react";
 import { legacy_createStore as createStore} from 'redux'
 import {combineReducers} from "redux";
-// import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
 import {profileReducer} from "./profile-reducer";
