@@ -1,5 +1,4 @@
 import React from "react";
-import {PostType} from "./store";
 import {ProfileType} from "../components/Profile/Profile";
 
 
@@ -19,7 +18,7 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 export const profileReducer = (state = initialState, action: ProfileActionsType) => {
     switch (action.type) {
         case ADD_POST: {
-            let newPost: PostType = {
+            let newPost = {
                 id: 5,
                 message: state.newPostText,
                 likesCont: 0

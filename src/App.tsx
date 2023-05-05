@@ -11,6 +11,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 
 const App = () => {
 
+
     return (
         <div className='app-wrapper'>
             <Header/>
@@ -18,9 +19,12 @@ const App = () => {
             <div className='app-wrapper-content'>
                 <Route path="/dialogs" render={() => <DialogsContainer />}/>
 
-                <Route path="/profile" render={() => <ProfileContainer />}/>
+                <Route path="/profile/:userId" render={() => <ProfileContainer />}/>
 
-                <Route path="/users" render={() => <UsersContainer/> }/>
+                <Route path="/users" render={() => {
+                    // @ts-ignore
+                    return <UsersContainer/>
+                } }/>
             </div>
         </div>
     );

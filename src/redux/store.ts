@@ -1,45 +1,45 @@
 import React from "react";
-import profileReducer, {ProfileActionsType} from "./profile-reducer";
-import dialogsReducer, {DialogsActionsType} from "./dialogs-reducer";
-//import sidebarReducer from "./sidebar-reducer";
-
-export type StateType = {
-    profilePage: ProfilePageType,
-    dialogsPage: DialogsPageType
-}
-export type ProfilePageType = {
-    posts: PostsType
-    newPostText: string //
-}
-export type DialogsPageType = {
-    dialogs: DialogsType
-    messages: MessagesType
-    newMessageBody: string
-}
-export type PostsType = PostType[]
-export type PostType = {
-    id: number
-    message: string
-    likesCont: number
-}
-export type DialogType = {
-    id: number
-    name: string
-}
-export type DialogsType = DialogType[]
-export type MessageType = {
-    id: number
-    message: string
-}
-export type MessagesType = MessageType[]
-export type ActionsType = ProfileActionsType | DialogsActionsType
-export type StoreType = {
-    _state: StateType
-    _callSubscriber: (state: StateType) => void
-    getState: () => StateType
-    subscribe: (observer: (state: StateType) => void) => void
-    dispatch: (action: ActionsType) => void
-}
+// import profileReducer, {ProfileActionsType} from "./profile-reducer";
+// import dialogsReducer, {DialogsActionsType} from "./dialogs-reducer";
+// //import sidebarReducer from "./sidebar-reducer";
+//
+// export type StateType = {
+//     profilePage: ProfilePageType,
+//     dialogsPage: DialogsPageType
+// }
+// export type ProfilePageType = {
+//     posts: PostsType
+//     newPostText: string //
+// }
+// export type DialogsPageType = {
+//     dialogs: DialogsType
+//     messages: MessagesType
+//     newMessageBody: string
+// }
+// export type PostsType = PostType[]
+// export type PostType = {
+//     id: number
+//     message: string
+//     likesCont: number
+// }
+// export type DialogType = {
+//     id: number
+//     name: string
+// }
+// export type DialogsType = DialogType[]
+// export type MessageType = {
+//     id: number
+//     message: string
+// }
+// export type MessagesType = MessageType[]
+// export type ActionsType = ProfileActionsType | DialogsActionsType
+// export type StoreType = {
+//     _state: StateType
+//     _callSubscriber: (state: StateType) => void
+//     getState: () => StateType
+//     subscribe: (observer: (state: StateType) => void) => void
+//     dispatch: (action: ActionsType) => void
+// }
 //
 // let store: StoreType = {
 //     _state: {

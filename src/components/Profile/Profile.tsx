@@ -1,7 +1,6 @@
 import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {ProfilePropsType} from "./ProfileContainer";
 
 
 export type ProfileType = {
@@ -23,10 +22,11 @@ export type ProfileType = {
     photos: {
         small: string
         large: string
-
     }
 }
-
+type ProfilePropsType = {
+    profile : any
+}
 const Profile = (props: ProfilePropsType) => {
 
     return (

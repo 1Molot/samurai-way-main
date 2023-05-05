@@ -2,7 +2,6 @@ import React from "react";
 import {sedMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {DialogsPageType, ProfilePageType} from "../../redux/store";
 import {Dispatch} from "redux";
 import {AppStateType} from "../../redux/redux-store";
 
