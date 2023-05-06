@@ -7,7 +7,7 @@ import {setUserProfileAC} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 
 //UsersProps
-class ProfileContainer extends React.Component<any, any> {
+class ProfileContainer extends React.Component<ProfilePropsType> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
@@ -36,7 +36,7 @@ type MapDispatchToPropsType = {
     setUserProfileAC: (profile: ProfileType) => void
 }
 
-// @ts-ignore
+
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
 export type ProfilePropsType = ReturnType<typeof mapStateToProps> & MapDispatchToPropsType & RouteComponentProps<PathParamsType>

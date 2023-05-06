@@ -14,7 +14,7 @@ import axios from "axios";
 import Preloader from "../common/preloader/Preloader";
 
 //контейнерная компонента
-class UsersContainer extends React.Component<any> {
+class UsersContainer extends React.Component<UsersProps> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
@@ -73,7 +73,7 @@ const mapDispatchToProps = {
 
 export type UsersProps = ReturnType<typeof mapStateToProps> & MDPType
 
-// @ts-ignore
+
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
 
 type MDPType = {
