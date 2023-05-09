@@ -1,20 +1,24 @@
 import React from "react";
-import { legacy_createStore as createStore} from 'redux'
+import {createStore} from 'redux'
 import {combineReducers} from "redux";
 import dialogsReducer from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
 import {profileReducer} from "./profile-reducer";
+import authReducer from "./auth-reducer";
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
-    //sidebar:sidebarReducer
+    //sidebar:sidebarReducer,
+    auth: authReducer
 });
 
-export type AppStateType = ReturnType<typeof rootReducer>
+
 
 let store = createStore(rootReducer);
+
+export type AppStateType = ReturnType<typeof rootReducer>
 
 // @ts-ignore
 window.store = store;
