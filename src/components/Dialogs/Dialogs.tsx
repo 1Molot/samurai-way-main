@@ -2,32 +2,27 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {sedMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import {DialogsPropsType} from "./DialogsContainer";
+import {Redirect} from "react-router-dom";
 
-//
-// type DialogsPropsType = {
-//     store: StoreType
-// }
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    // let state = props.store.getState().dialogsPage
     let state = props.dialogsPage
-
     let dialogsElements = state.dialogs.map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id}/>);
     let messagesElements = state.messages.map(message => <Message message={message.message} key={message.id}/>);
     let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () => {
-        // props.store.dispatch(sedMessageCreator());
+
         props.sedMessage()
     }
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value;
         props.updateNewMessageBody(body)
-       // props.store.dispatch(updateNewMessageBodyCreator(body));
     }
+
+    if(!props.isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div className={s.dialogs}>
