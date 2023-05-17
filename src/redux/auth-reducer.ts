@@ -1,12 +1,14 @@
-import React from "react";
 
-export type UserrType = {
-    userId: number,      //id
-    email: string,
-    login: string,
-    isAuth:boolean
-}
-export type UserrsType = UserrType[]
+// export type UserrType = {
+//     userId: number,      //id
+//     email: string,
+//     login: string,
+//     isAuth:boolean
+// }
+// export type UserrsType = UserrType[]
+
+import {Dispatch} from "redux";
+import {authAPI} from "../api/api";
 
 let initialState = {
     id: null,      //id
@@ -45,5 +47,14 @@ type SetAuthUserData = ReturnType<typeof setAuthUserData>
 export const setAuthUserData = (userId: number,email: string, login: string,) => ({
     type: 'SET_USER_DATA',data: {userId, email, login}
 } as const)
+
+export const getAuthUserData = () => (dispatch: Dispatch) => {
+    return authAPI.me().then(response => {
+        if (response.data.resultCode === 0) {
+            let {id, email, login} = response.data.data;
+            dispatch(setAuthUserData(id, email, login));
+        }
+    });
+}
 
 export default authReducer;
