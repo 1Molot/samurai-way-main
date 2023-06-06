@@ -1,18 +1,10 @@
 import React from 'react';
-import {connect} from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 import Users from "./Users";
 import {AppStateType} from "../../redux/redux-store";
-import {
-    follow, getUsers,
-    setCurrentPage,
-    setUsers,
-    setUsersTotalCount, toggleFollowingProgress, toggleIsFetching,
-    unfollow,
-    UserType
-} from "../../redux/users-reducer";
-import axios from "axios";
+import {follow, getUsers, setCurrentPage, unfollow} from "../../redux/users-reducer";
 import Preloader from "../common/preloader/Preloader";
-import {usersAPI} from "../../api/api";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 //контейнерная компонента
 class UsersContainer extends React.Component<UsersProps> {
@@ -23,7 +15,6 @@ class UsersContainer extends React.Component<UsersProps> {
 
     onPageChanged = (pageNumber: number) => {
         this.props.getUsers(pageNumber, this.props.pageSize);
-
     }
 
     render() { //дай мне JSX, не делает перерисовку(render)
@@ -38,8 +29,6 @@ class UsersContainer extends React.Component<UsersProps> {
                        users={this.props.users}
                        follow={this.props.follow}
                        unfollow={this.props.unfollow}
-
-                       // toggleFollowingProgress={this.props.toggleFollowingProgress} //nenado
                        followingInProgress={this.props.followingInProgress}
                 />
             </>
@@ -55,33 +44,24 @@ let mapStateToProps = (state: AppStateType) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress
-
     }
 }
 
 const mapDispatchToProps = {
     follow,
     unfollow,
-    // setUsers,
     setCurrentPage,
-    // setUsersTotalCount,
-    // toggleIsFetching,
-    // toggleFollowingProgress,
     getUsers
 }
 
 export type UsersProps = ReturnType<typeof mapStateToProps> & MDPType
 
+export default WithAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(UsersContainer)); //
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
 
 type MDPType = {
     follow: (userId: string) => void
     unfollow: (userId: string) => void
-    // setUsers: (users: UserType[]) => void
     setCurrentPage: (pageNumber: number) => void
-    // setUsersTotalCount: (totalCount: number) => void
-    // toggleIsFetching: (isFetching: boolean) => void
-    // toggleFollowingProgress: (isFetching: boolean, userId: string) => void
     getUsers: (currentPage: number, pageSize: number) => void
 }
