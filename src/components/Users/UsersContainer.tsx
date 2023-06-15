@@ -1,10 +1,11 @@
 import React from 'react';
-import {connect, ConnectedProps} from "react-redux";
+import {connect} from "react-redux";
 import Users from "./Users";
 import {AppStateType} from "../../redux/redux-store";
 import {follow, getUsers, setCurrentPage, unfollow} from "../../redux/users-reducer";
 import Preloader from "../common/preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 //контейнерная компонента
 class UsersContainer extends React.Component<UsersProps> {
@@ -47,6 +48,13 @@ let mapStateToProps = (state: AppStateType) => {
     }
 }
 
+type MDPType = {
+    follow: (userId: string) => void
+    unfollow: (userId: string) => void
+    setCurrentPage: (pageNumber: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+}
+
 const mapDispatchToProps = {
     follow,
     unfollow,
@@ -56,12 +64,9 @@ const mapDispatchToProps = {
 
 export type UsersProps = ReturnType<typeof mapStateToProps> & MDPType
 
-export default WithAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(UsersContainer)); //
+export default compose<React.ComponentType>(
+    WithAuthRedirect,//защита
+    connect(mapStateToProps, mapDispatchToProps)
+)(UsersContainer);
 
 
-type MDPType = {
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
-    setCurrentPage: (pageNumber: number) => void
-    getUsers: (currentPage: number, pageSize: number) => void
-}
