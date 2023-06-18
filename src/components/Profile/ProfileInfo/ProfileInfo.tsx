@@ -3,13 +3,11 @@ import s from './ProfileInfo.module.css';
 import { ProfileType} from "../Profile";
 import Preloader from "../../common/preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
+import {ProfilePropsType} from "../Profile";
 
 
-export type PropsType = {
-    profile: ProfileType
-}
 
-const ProfileInfo = (props: PropsType) => {
+const ProfileInfo = (props: ProfilePropsType) => {
     if(!props.profile){
         return <Preloader/>
     }
@@ -22,7 +20,7 @@ const ProfileInfo = (props: PropsType) => {
             {/*</div>*/}
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus status={"Hello my friends"}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
