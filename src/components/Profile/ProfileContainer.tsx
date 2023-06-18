@@ -17,10 +17,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
             userId = String(28786); //moi
         }
         this.props.getUserProfile(userId);
-        // setTimeout(()=>{
         this.props.getStatus(userId);
-        // },1000)
-
     }
 
     render() {
@@ -42,7 +39,6 @@ type MapDispatchToPropsType = {
     getUserProfile: (userId: string) => void
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
-    // status:string
 }
 
 export type ProfilePropsType =
