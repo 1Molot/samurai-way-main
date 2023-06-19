@@ -1,5 +1,5 @@
 import React from "react";
-import {sedMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {sedMessageCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {compose, Dispatch} from "redux";
@@ -12,14 +12,14 @@ let mapStateToProps = (state: AppStateType) => {
         dialogsPage: state.dialogsPage,
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch) => {    //callback
+export let mapDispatchToProps = (dispatch: Dispatch) => {    //callback
     return {
-        updateNewMessageBody: (body: string) => {
-            dispatch(updateNewMessageBodyCreator(body));
+        sedMessage: (newMessageBody:string) => {
+            dispatch(sedMessageCreator(newMessageBody));
         },
-        sedMessage: () => {
-            dispatch(sedMessageCreator());
-        }
+        // updateNewMessageBody: (body: string) => {
+        //     dispatch(updateNewMessageBodyCreator(body));
+        // }
     }
 }
 
@@ -27,5 +27,5 @@ export type DialogsPropsType = ReturnType<typeof mapStateToProps> & ReturnType<t
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
-    WithAuthRedirect
+    // WithAuthRedirect
 )(Dialogs);

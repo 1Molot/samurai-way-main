@@ -9,13 +9,13 @@ let initialState = {
         {id: 1, message: 'Hi, how are you?', likesCont: 12},
         {id: 2, message: 'It\'s my first post', likesCont: 11},
     ],
-    newPostText: 'it-kamasutra.com',
+    // newPostText: 'it-kamasutra.com',
     profile: null as ProfileType | null,
     status: ""
 };
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET-STATUS';
 
@@ -24,7 +24,7 @@ export const profileReducer = (state = initialState, action: ProfileActionsType)
         case ADD_POST: {
             let newPost = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCont: 0
             };
             return {
@@ -33,12 +33,12 @@ export const profileReducer = (state = initialState, action: ProfileActionsType)
                 newPostText: ''
             };
         }
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
-            };
-        }
+        // case UPDATE_NEW_POST_TEXT: {
+        //     return {
+        //         ...state,
+        //         newPostText: action.newText
+        //     };
+        // }
         case SET_STATUS: {
             return {
                 ...state,
@@ -53,11 +53,14 @@ export const profileReducer = (state = initialState, action: ProfileActionsType)
     }
 }
 
-export type ProfileActionsType = AddPostACType | UpdateNewPostTextACType | setUserProfileACType | SetStatusACType
+export type ProfileActionsType = AddPostACType
+    // | UpdateNewPostTextACType
+    | setUserProfileACType
+    | SetStatusACType
 
 type AddPostACType = ReturnType<typeof addPostActionCreator>
-export const addPostActionCreator = () => ({
-    type: ADD_POST
+export const addPostActionCreator = (newPostText:string) => ({
+    type: ADD_POST,newPostText
 } as const)
 
 type setUserProfileACType = ReturnType<typeof setUserProfileAC>
@@ -86,10 +89,10 @@ export const updateStatus = (status: string) => (dispatch: Dispatch) => {
         });
 }
 
-type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextActionCreator>
-export const updateNewPostTextActionCreator = (text: string) => ({
-    type: UPDATE_NEW_POST_TEXT, newText: text
-} as const)
+// type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextActionCreator>
+// export const updateNewPostTextActionCreator = (text: string) => ({
+//     type: UPDATE_NEW_POST_TEXT, newText: text
+// } as const)
 
 type SetStatusACType = ReturnType<typeof setStatusAC>
 export const setStatusAC = (status: string) => ({
