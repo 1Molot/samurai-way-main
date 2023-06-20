@@ -1,5 +1,3 @@
-import React from "react";
-
 
 let initialState = {
     dialogs: [
@@ -17,25 +15,18 @@ let initialState = {
         {id: 4, message: 'Yo'},
         {id: 5, message: 'Yo'},
     ],
-    // newMessageBody: "" //ne nado
 }
 
-// const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+
 const SEND_MESSAGE = 'SEND-MESSAGE';
-///DialogsPageType
+
 export const dialogsReducer = (state = initialState, action: DialogsActionsType) => {
 
     switch (action.type) {
-        // case UPDATE_NEW_MESSAGE_BODY:
-        //     return {
-        //         ...state,
-        //         newMessageBody: action.body
-        //     };
         case SEND_MESSAGE:
             let body = action.newMessageBody;
             return {
                 ...state,
-                // newMessageBody: '',
                 messages: [...state.messages, {id: 6, message: body}]
             };
         default:
@@ -46,13 +37,9 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
 export const sedMessageCreator = (newMessageBody:string) => ({ //iz
     type: SEND_MESSAGE,newMessageBody
 } as const)
-// export const updateNewMessageBodyCreator = (body: string) => ({
-//     type: UPDATE_NEW_MESSAGE_BODY, body: body
-// } as const)
 
 type SendMessageACType = ReturnType<typeof sedMessageCreator>
-// type UpdateNewMessageBodyACType = ReturnType<typeof updateNewMessageBodyCreator>
+
 export type DialogsActionsType = SendMessageACType
-    // | UpdateNewMessageBodyACType
 
 export default dialogsReducer;

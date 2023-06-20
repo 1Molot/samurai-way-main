@@ -1,6 +1,5 @@
 import React from "react";
 import MyPosts from "./MyPosts";
-
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {AppStateType} from "../../../redux/redux-store";
@@ -15,10 +14,6 @@ const mapStateToProps = (state: AppStateType) => {
 
  const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        // updateNewPostText: (text: string) => {
-        //     let action = updateNewPostTextActionCreator(text);
-        //     dispatch(action);
-        // },
         addPost: (newPostText:string) => {    //iz
             dispatch(addPostActionCreator(newPostText));
         }

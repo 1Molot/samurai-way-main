@@ -24,7 +24,7 @@ export type ProfileType = {
         large: string
     }
 }
-export type ProfilePropsType = { // что тут
+export type ProfilePropsType = {
     profile : ProfileType | null
     status: string
     updateStatus: (status: string) => void

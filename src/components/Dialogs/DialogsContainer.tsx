@@ -12,14 +12,11 @@ let mapStateToProps = (state: AppStateType) => {
         dialogsPage: state.dialogsPage,
     }
 }
-export let mapDispatchToProps = (dispatch: Dispatch) => {    //callback
+export let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         sedMessage: (newMessageBody:string) => {
             dispatch(sedMessageCreator(newMessageBody));
-        },
-        // updateNewMessageBody: (body: string) => {
-        //     dispatch(updateNewMessageBodyCreator(body));
-        // }
+        }
     }
 }
 

@@ -5,8 +5,6 @@ import Preloader from "../../common/preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
 import {ProfilePropsType} from "../Profile";
 
-
-
 const ProfileInfo = (props: ProfilePropsType) => {
     if(!props.profile){
         return <Preloader/>
