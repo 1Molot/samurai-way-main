@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getUsers} from "../redux/users-reducer";
+
 
 
 const instance = axios.create({

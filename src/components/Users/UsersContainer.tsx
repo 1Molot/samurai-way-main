@@ -2,20 +2,28 @@ import React from 'react';
 import {connect} from "react-redux";
 import Users from "./Users";
 import {AppStateType} from "../../redux/redux-store";
-import {follow, getUsers, setCurrentPage, unfollow} from "../../redux/users-reducer";
+import {follow, requestUsers, setCurrentPage, unfollow} from "../../redux/users-reducer";
 import Preloader from "../common/preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {
+    getUsers,
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount
+} from "../../redux/users-selectors";
 
 //контейнерная компонента
 class UsersContainer extends React.Component<UsersProps> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.requestUsers(pageNumber, this.props.pageSize);
     }
 
     render() { //дай мне JSX, не делает перерисовку(render)
@@ -37,14 +45,24 @@ class UsersContainer extends React.Component<UsersProps> {
     }
 }
 
+// let mapStateToProps = (state: AppStateType) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress
+//     }
+// }
 let mapStateToProps = (state: AppStateType) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 
@@ -52,14 +70,14 @@ type MDPType = {
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     setCurrentPage: (pageNumber: number) => void
-    getUsers: (currentPage: number, pageSize: number) => void
+    requestUsers: (currentPage: number, pageSize: number) => void
 }
 
 const mapDispatchToProps = {
     follow,
     unfollow,
     setCurrentPage,
-    getUsers
+    requestUsers
 }
 
 export type UsersProps = ReturnType<typeof mapStateToProps> & MDPType
