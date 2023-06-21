@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from "./users.module.css";
 import usersPhoto from "../../assets/imges/user.png";
-import {toggleFollowingProgress, UserType} from "../../redux/users-reducer";
+import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {usersAPI} from "../../api/api";
 
 type UsersPropsType = {
     totalUsersCount: number
@@ -14,8 +12,6 @@ type UsersPropsType = {
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     currentPage: number
-    // toggleFollowingProgress: (isFetching: boolean, userId: string) => void
-    // id:string
     followingInProgress: string[]
 }
 // presend component

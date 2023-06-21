@@ -26,7 +26,7 @@ const authReducer = (state:TypeInitialState = initialState, action: TsarACType) 
         case SET_USER_DATA:
             return {
                 ...state,
-             ...action.payload
+                ...action.payload
             }
 
         default:
@@ -43,7 +43,8 @@ export const setAuthUserData = (userId: number | null,email: string | null, logi
 
 export const getAuthUserData = () => (dispatch: Dispatch) => {
 
-     authAPI.me().then(response => {
+     return authAPI.me().then(response => {
+         console.log(response, 'res')
         if (response.data.resultCode === 0) {
             let {id, email, login} = response.data.data;
             dispatch(setAuthUserData(id, email, login,true));
@@ -53,7 +54,7 @@ export const getAuthUserData = () => (dispatch: Dispatch) => {
 
 export const login = (email:string,password:string,rememberMe: boolean = false) => (dispatch: ThunkDispatch<any, any, any>) => {
 
-     authAPI.login(email,password,rememberMe).then(response => {
+      authAPI.login(email,password,rememberMe).then(response => {
         if (response.data.resultCode === 0) {
           dispatch(getAuthUserData())
         }else {
@@ -65,7 +66,7 @@ export const login = (email:string,password:string,rememberMe: boolean = false) 
 
 export const logout = () => (dispatch: Dispatch) => {
 
-    authAPI.logout().then(response => {
+     authAPI.logout().then(response => {
         if (response.data.resultCode === 0) {
             dispatch(setAuthUserData(null, null, null,false));
         }

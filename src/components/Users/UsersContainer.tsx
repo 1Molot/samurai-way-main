@@ -65,7 +65,7 @@ const mapDispatchToProps = {
 export type UsersProps = ReturnType<typeof mapStateToProps> & MDPType
 
 export default compose<React.ComponentType>(
-    WithAuthRedirect,//защита
+    //WithAuthRedirect,//защита
     connect(mapStateToProps, mapDispatchToProps)
 )(UsersContainer);
 
