@@ -1,20 +1,21 @@
-
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {ThunkDispatch} from "redux-thunk";
+import {stopSubmit} from "redux-form";
 
 export type TypeInitialState = {
-    id: number | null,      //id
+    userId: number | null,      //id
     email: string | null,
     login: string | null,
-    isAuth:boolean
+    isAuth:boolean,
 }
 
 let initialState = {
-    id: null,      //id
+    userId: null,      //id
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+
 };
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -41,7 +42,8 @@ export const setAuthUserData = (userId: number | null,email: string | null, logi
 } as const)
 
 export const getAuthUserData = () => (dispatch: Dispatch) => {
-    return authAPI.me().then(response => {
+
+     authAPI.me().then(response => {
         if (response.data.resultCode === 0) {
             let {id, email, login} = response.data.data;
             dispatch(setAuthUserData(id, email, login,true));
@@ -50,16 +52,20 @@ export const getAuthUserData = () => (dispatch: Dispatch) => {
 }
 
 export const login = (email:string,password:string,rememberMe: boolean = false) => (dispatch: ThunkDispatch<any, any, any>) => {
-    return authAPI.login(email,password,rememberMe).then(response => {
+
+     authAPI.login(email,password,rememberMe).then(response => {
         if (response.data.resultCode === 0) {
           dispatch(getAuthUserData())
+        }else {
+            let message = response.data.mangle.length > 0 ? response.data.message[0] : "Some error"
+            dispatch(stopSubmit("login",{_error:message}))
         }
     });
 }
 
 export const logout = () => (dispatch: Dispatch) => {
-    console.log('asdf')
-    return authAPI.logout().then(response => {
+
+    authAPI.logout().then(response => {
         if (response.data.resultCode === 0) {
             dispatch(setAuthUserData(null, null, null,false));
         }

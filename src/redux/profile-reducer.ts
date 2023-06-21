@@ -10,7 +10,7 @@ let initialState = {
         {id: 2, message: 'It\'s my first post', likesCont: 11},
     ],
     profile: null as ProfileType | null,
-    status: ""
+    status: "",
 };
 
 const ADD_POST = 'ADD-POST';
