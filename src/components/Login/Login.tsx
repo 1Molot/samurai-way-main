@@ -9,7 +9,6 @@ import {AppStateType} from "../../redux/redux-store";
 const Login = (props:AllPropsTypeForLoginComponent) => {
 
     const onSubmit = (formData:LoginFormDataType) => {
-        //callback
         props?.login?.(formData.email,formData.password,formData.rememberMe)
     }
 
@@ -27,8 +26,6 @@ const Login = (props:AllPropsTypeForLoginComponent) => {
 
 const mapStateToProps = (state:AppStateType) => ({
     isAuth: state.auth.isAuth,
-    // login: state.auth.login,
 })
-
 
 export default connect(mapStateToProps,{login})(Login);

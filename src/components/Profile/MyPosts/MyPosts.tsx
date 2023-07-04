@@ -11,8 +11,8 @@ const MyPosts = React.memo((props: MyPostsContainerProps) => {
 
     let newPostElement = React.createRef();
 
-    let onAddPost = (values: PostFormDataType) => { //xz
-        props.addPost(values.newPostText); //
+    let onAddPost = (values: PostFormDataType) => {
+        props.addPost(values.newPostText);
     }
 
     return (

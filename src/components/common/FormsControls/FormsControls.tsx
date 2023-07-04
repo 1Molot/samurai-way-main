@@ -14,12 +14,12 @@ const FormControl = ({meta, children}: PropsWithChildren<WrappedFieldProps>) => 
     )
 }
 
-export const Textarea = (props: PropsWithChildren<WrappedFieldProps>) => { //xz
+export const Textarea = (props: PropsWithChildren<WrappedFieldProps>) => {
     const {input, meta, children, ...restProps} = props
     return <FormControl {...props}><textarea {...input} {...restProps}/></FormControl>
 }
 
-export const Input = (props: PropsWithChildren<WrappedFieldProps>) => { //xz
+export const Input = (props: PropsWithChildren<WrappedFieldProps>) => {
     const {input, meta, children, ...restProps} = props
     return <FormControl {...props}><input {...input} {...restProps}/></FormControl>
 }

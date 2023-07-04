@@ -5,7 +5,6 @@ import {Input} from "../common/FormsControls/FormsControls";
 import styles from "../common/FormsControls/FormsControls.module.css";
 
 export type LoginFormDataType = {
-    // login:string
     email: string
     password: string
     rememberMe: boolean

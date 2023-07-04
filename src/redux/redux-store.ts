@@ -18,7 +18,6 @@ let rootReducer = combineReducers({
     app: appReducer
 });
 
-
 let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export type AppStateType = ReturnType<typeof rootReducer>

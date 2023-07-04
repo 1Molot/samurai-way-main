@@ -4,11 +4,6 @@ import {NavLink} from "react-router-dom";
 import {AllPropsType} from "./HeaderContainer";
 
 
-// export type PropsType = {
-//     isAuth: boolean | null,
-//     login: string | null,
-//     logout: () => void //tak?
-// }
 const Header = (props:AllPropsType) => {
 
     return (

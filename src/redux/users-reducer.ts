@@ -1,4 +1,4 @@
-import React from "react";
+
 import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
 
@@ -9,7 +9,7 @@ export type UserType = {
         large: string | null,
     },
     followed: boolean
-    name: string     //fullName
+    name: string
     status: string
     location: {
         city: string

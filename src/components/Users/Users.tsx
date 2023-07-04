@@ -36,7 +36,6 @@ let Users = (props: UsersPropsType) => {
                            {p}
                        </span>
                 })}
-
             </div>
             {
                 props.users.map(u => <div key={u.id}>

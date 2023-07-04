@@ -6,16 +6,10 @@ import {logout} from "../../redux/auth-reducer";
 
 
 export type PropsType = {
-    // setAuthUserData: (userId: number,email: string, login: string) => void
     getAuthUserData: () => void
-
 }
 
 class HeaderContainer extends React.Component<AllPropsType> {
-
-    // componentDidMount() {
-    //     this.props.getAuthUserData();
-    // }
 
     render() {
         return <Header {...this.props} logout={this.props.logout}/>
@@ -35,7 +29,6 @@ export type AllPropsTypeForLoginComponent =  {
 const mapStateToProps = (state:AppStateType) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
-
 })
                                                        //thunk
 export default connect(mapStateToProps,{logout}) (HeaderContainer);

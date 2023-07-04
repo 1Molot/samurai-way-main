@@ -17,7 +17,6 @@ let initialState = {
     ],
 }
 
-
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 export const dialogsReducer = (state = initialState, action: DialogsActionsType) => {

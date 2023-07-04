@@ -4,14 +4,14 @@ import {ThunkDispatch} from "redux-thunk";
 import {stopSubmit} from "redux-form";
 
 export type TypeInitialState = {
-    userId: number | null,      //id
+    userId: number | null,
     email: string | null,
     login: string | null,
     isAuth:boolean,
 }
 
 let initialState = {
-    userId: null,      //id
+    userId: null,
     email: null,
     login: null,
     isAuth: false,
@@ -20,7 +20,6 @@ let initialState = {
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
-
 const authReducer = (state:TypeInitialState = initialState, action: TsarACType) => {
     switch (action.type) {
         case SET_USER_DATA:
@@ -28,7 +27,6 @@ const authReducer = (state:TypeInitialState = initialState, action: TsarACType) 
                 ...state,
                 ...action.payload
             }
-
         default:
             return state
     }

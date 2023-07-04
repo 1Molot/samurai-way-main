@@ -11,7 +11,6 @@ let initialState = {
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
-
 const appReducer = (state: TyperInitialState = initialState, action: TsarACType) => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
@@ -39,6 +38,5 @@ export const initializeApp = () => (dispatch: ThunkDispatch<any, any, any>) => {
             dispatch(initialSuccess());
         })
 }
-
 
 export default appReducer;

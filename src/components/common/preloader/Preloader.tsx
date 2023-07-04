@@ -8,7 +8,6 @@ let Preloader = () => {
             <div style={{backgroundColor: 'white'}}>
                 <img src={preloader} />
             </div>
-
     )
 }
 
