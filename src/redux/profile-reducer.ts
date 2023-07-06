@@ -12,10 +12,10 @@ let initialState = {
     status: ""
 };
 
-const ADD_POST = 'ADD-POST';
+const ADD_POST = 'profile/ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET-STATUS';
-const DELETE_POST = 'DELETE_POST';
+const SET_STATUS = 'profile/SET-STATUS';
+const DELETE_POST = 'profile/DELETE_POST';
 
 export const profileReducer = (state = initialState, action: ProfileActionsType) => {
     switch (action.type) {
@@ -55,13 +55,24 @@ export type ProfileActionsType = AddPostACType
 
 type AddPostACType = ReturnType<typeof addPostActionCreator>
 export const addPostActionCreator = (newPostText: string) => ({
-    type: ADD_POST, newPostText
+    type: 'profile/ADD-POST', newPostText
 } as const)
 
 type setUserProfileACType = ReturnType<typeof setUserProfileAC>
 export const setUserProfileAC = (profile: ProfileType) => ({
-    type: SET_USER_PROFILE, profile
+    type: 'SET_USER_PROFILE', profile
 } as const)
+
+type SetStatusACType = ReturnType<typeof setStatusAC>
+export const setStatusAC = (status: string) => ({
+    type: 'profile/SET-STATUS', status
+} as const)
+
+type DeletePostACType = ReturnType<typeof deletePostAC>
+export const deletePostAC = (postId: number) => ({
+    type: 'profile/DELETE_POST', postId
+} as const)
+
 
 // type getUserProfileACType = ReturnType<typeof getUserProfile>
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
@@ -83,14 +94,5 @@ export const updateStatus = (status: string) => (dispatch: Dispatch) => {
             }
         });
 }
-type SetStatusACType = ReturnType<typeof setStatusAC>
-export const setStatusAC = (status: string) => ({
-    type: SET_STATUS, status
-} as const)
-
-type DeletePostACType = ReturnType<typeof deletePostAC>
-export const deletePostAC = (postId: number) => ({
-    type: DELETE_POST, postId
-} as const)
 
 export default profileReducer;

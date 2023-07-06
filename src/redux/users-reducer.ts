@@ -36,13 +36,13 @@ let initialState: InitialStateType = {
     followingInProgress: []
 };
 
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS'
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
+const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'users/SET_TOTAL_USERS_COUNT'
+const FOLLOW = 'users/FOLLOW';
+const UNFOLLOW = 'users/UNFOLLOW';
+const SET_USERS = 'users/SET_USERS'
+const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE_IS_FOLLOWING_PROGRESS'
 
 const usersReducer = (state = initialState, action: TsarACType): InitialStateType => {
     switch (action.type) {
@@ -101,42 +101,42 @@ type TsarACType = followACType |
 
 type followACType = ReturnType<typeof followSuccess>
 export const followSuccess = (userId: string) => ({
-    type: 'FOLLOW', userId
+    type: 'users/FOLLOW', userId
 } as const)
 
 type unfollowACType = ReturnType<typeof unfollowSuccess>
 export const unfollowSuccess = (userId: string) => ({
-    type: 'UNFOLLOW', userId
+    type: 'users/UNFOLLOW', userId
 } as const)
 
 type setUsersACType = ReturnType<typeof setUsers>
 
 export const setUsers = (users: UserType[]) => ({
-    type: 'SET_USERS', users
+    type: 'users/SET_USERS', users
 } as const)
 
 type setCurrentPageACType = ReturnType<typeof setCurrentPage>
 
 export const setCurrentPage = (currentPage: number) => ({
-    type: 'SET_CURRENT_PAGE', currentPage
+    type: 'users/SET_CURRENT_PAGE', currentPage
 } as const)
 
 type setUsersTotalCountACType = ReturnType<typeof setUsersTotalCount>
 
 export const setUsersTotalCount = (totalUsersCount: number) => ({
-    type: 'SET_TOTAL_USERS_COUNT', count: totalUsersCount
+    type: 'users/SET_TOTAL_USERS_COUNT', count: totalUsersCount
 } as const)
 
 type toggleIsFetchingACType = ReturnType<typeof toggleIsFetching>
 
 export const toggleIsFetching = (isFetching: boolean) => ({
-    type: 'TOGGLE_IS_FETCHING', isFetching
+    type: 'users/TOGGLE_IS_FETCHING', isFetching
 } as const)
 
 type toggleFollowingProgress = ReturnType<typeof toggleFollowingProgress>
 
 export const toggleFollowingProgress = (isFetching: boolean, userId: string) => ({
-    type: 'TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId
+    type: 'users/TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId
 } as const)
 
 export const requestUsers = (page: number, pageSize: number) => {

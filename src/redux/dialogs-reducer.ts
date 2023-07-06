@@ -17,7 +17,7 @@ let initialState = {
     ],
 }
 
-const SEND_MESSAGE = 'SEND-MESSAGE';
+const SEND_MESSAGE = 'dialog/SEND-MESSAGE';
 
 export const dialogsReducer = (state = initialState, action: DialogsActionsType) => {
 
@@ -34,7 +34,7 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
 }
 
 export const sedMessageCreator = (newMessageBody:string) => ({ //iz
-    type: SEND_MESSAGE,newMessageBody
+    type: 'dialog/SEND-MESSAGE',newMessageBody
 } as const)
 
 type SendMessageACType = ReturnType<typeof sedMessageCreator>

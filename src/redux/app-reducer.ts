@@ -9,7 +9,7 @@ let initialState = {
     initialized: false,
 };
 
-const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
+const INITIALIZED_SUCCESS = 'app/INITIALIZED_SUCCESS';
 
 const appReducer = (state: TyperInitialState = initialState, action: TsarACType) => {
     switch (action.type) {
@@ -27,7 +27,7 @@ type TsarACType = InitialSuccess
 
 type InitialSuccess = ReturnType<typeof initialSuccess>
 export const initialSuccess = () => ({
-    type: 'INITIALIZED_SUCCESS'
+    type: 'app/INITIALIZED_SUCCESS'
 } as const)
 
 export const initializeApp = () => (dispatch: ThunkDispatch<any, any, any>) => {
