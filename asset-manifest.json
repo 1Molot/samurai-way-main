@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/1Molot/samurai-way-main/static/css/main.3f131ba5.css",
+    "main.js": "/1Molot/samurai-way-main/static/js/main.77521ebe.js",
+    "static/media/user.png": "/1Molot/samurai-way-main/static/media/user.52544730159f493b8159.png",
+    "index.html": "/1Molot/samurai-way-main/index.html",
+    "main.3f131ba5.css.map": "/1Molot/samurai-way-main/static/css/main.3f131ba5.css.map",
+    "main.77521ebe.js.map": "/1Molot/samurai-way-main/static/js/main.77521ebe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3f131ba5.css",
+    "static/js/main.77521ebe.js"
+  ]
+}
