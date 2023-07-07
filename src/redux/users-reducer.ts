@@ -1,6 +1,7 @@
-
 import {usersAPI} from "../api/api";
-import {Dispatch} from "redux";
+import {AnyAction, Dispatch} from "redux";
+import {updateObjectInArray} from "../utils/object-helpers/object-helpers";
+import {AxiosResponse} from "axios";
 
 export type UserType = {
     id: string,
@@ -48,23 +49,13 @@ const usersReducer = (state = initialState, action: TsarACType): InitialStateTyp
     switch (action.type) {
         case FOLLOW:
             return {
-                ...state, users:
-                    state.users.map(u => {
-                        if (u.id === action.userId) {
-                            return {...u, followed: true}
-                        }
-                        return u
-                    })
+                ...state,
+                users:updateObjectInArray(state.users,action.userId,"id",{followed: true})
             }
         case UNFOLLOW:
             return {
-                ...state, users:
-                    state.users.map(u => {
-                        if (u.id === action.userId) {
-                            return {...u, followed: false}
-                        }
-                        return u
-                    })
+                ...state,
+                users:updateObjectInArray(state.users,action.userId,"id",{followed: false})
             }
         case SET_USERS: {
             return {...state, users: action.users}
@@ -140,44 +131,44 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: string) => 
 } as const)
 
 export const requestUsers = (page: number, pageSize: number) => {
-    return (dispatch:Dispatch) => {
-
+    return async (dispatch: Dispatch) => {
         dispatch(toggleIsFetching(true));
         dispatch(setCurrentPage(page));
-
-        usersAPI.getUsers(page, pageSize).then(data => {
-            dispatch(toggleIsFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setUsersTotalCount(data.totalCount));
-        });
+        let data = await usersAPI.getUsers(page, pageSize);
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsers(data.items));
+        dispatch(setUsersTotalCount(data.totalCount));
     }
 }
 
+type ResponseType = {
+    data: {
+        resultCode: number
+    }
+}
+
+//xz
+const followUnfollowFlow = async (userId: string, dispatch: Dispatch, apiMethod: (userId:string) => Promise<AxiosResponse>, actionCreator: (userId: string) => AnyAction) => {
+    dispatch(toggleFollowingProgress(true, userId));
+    let response = await apiMethod(userId);
+    if (response.data.resultCode === 0) {
+        dispatch(actionCreator(userId))
+    }
+    dispatch(toggleFollowingProgress(false, userId));
+}
+
 export const follow = (userId: string) => {
-    return (dispatch: Dispatch) => {
-        dispatch(toggleFollowingProgress(true, userId));
-        usersAPI.follow(userId)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(followSuccess(userId))
-                }
-                dispatch(toggleFollowingProgress(false, userId));
-            });
+    return async (dispatch: Dispatch) => {
+
+        followUnfollowFlow(userId, dispatch, usersAPI.follow.bind(usersAPI), followSuccess)
     }
 }
 
 export const unfollow = (userId: string) => {
-    return (dispatch: Dispatch) => {
-        dispatch(toggleFollowingProgress(true, userId));
-        usersAPI.unfollow(userId)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(unfollowSuccess(userId))
-                }
-                dispatch(toggleFollowingProgress(false, userId));
-            });
+    return async (dispatch: Dispatch) => {
+        followUnfollowFlow(userId, dispatch, usersAPI.unfollow.bind(usersAPI), unfollowSuccess)
+
     }
 }
-
 
 export default usersReducer;

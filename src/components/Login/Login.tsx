@@ -2,7 +2,7 @@ import React from 'react';
 import {LoginFormDataType, LoginReduxForm} from "./LoginForm";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
-import {AllPropsType, AllPropsTypeForLoginComponent} from "../Header/HeaderContainer";
+import {AllPropsTypeForLoginComponent} from "../Header/HeaderContainer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 

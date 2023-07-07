@@ -75,24 +75,19 @@ export const deletePostAC = (postId: number) => ({
 
 
 // type getUserProfileACType = ReturnType<typeof getUserProfile>
-export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
-    usersAPI.getProfile(userId).then(response => {
+export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
+    let response = await usersAPI.getProfile(userId);
         dispatch(setUserProfileAC(response.data));
-    });
 }
-export const getStatus = (userId: string) => (dispatch: Dispatch) => {
-    profileAPI.getStatus(userId)
-        .then(response => {
+export const getStatus = (userId: string) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.getStatus(userId);
             dispatch(setStatusAC(response.data));
-        });
 }
-export const updateStatus = (status: string) => (dispatch: Dispatch) => {
-    profileAPI.updateStatus(status)
-        .then(response => {
+export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.updateStatus(status);
             if (response.data.resultCode === 0) {
                 dispatch(setStatusAC(status));
             }
-        });
 }
 
 export default profileReducer;
