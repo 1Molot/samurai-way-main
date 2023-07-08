@@ -26,6 +26,9 @@ export const usersAPI = {
     getProfile(userId: string) {
         // console.warn('Obsolete method. Please profileAPI object')
         return profileAPI.getProfile(userId)
+    },
+    getFriends: () => {
+        return instance.get('users?friend=true')
     }
 }
 

@@ -11,14 +11,12 @@ const ProfileInfo = (props: ProfilePropsType) => {
         return <Preloader/>
     }
 
+    const src = props.profile.photos.large ?? 'https://t3.ftcdn.net/jpg/05/24/30/02/360_F_524300228_egMskw0zvvdwNUFPeJLlplclKzFamXBk.jpg'
+
     return (
         <div>
-            {/*<div>*/}
-            {/*    <img*/}
-            {/*        src='https://t3.ftcdn.net/jpg/05/24/30/02/360_F_524300228_egMskw0zvvdwNUFPeJLlplclKzFamXBk.jpg'/>*/}
-            {/*</div>*/}
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
+                <img src={src}/>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
