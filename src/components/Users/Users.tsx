@@ -12,13 +12,16 @@ export type UsersPropsType = {
     unfollow: (userId: string) => void
     currentPage: number
     followingInProgress: string[]
+    portionSize:number
 }
 // presend component
 const Users = (props: UsersPropsType) => {
 
     return (
         <div>
-            <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
+            <Paginator
+                portionSize={props.portionSize}//
+                currentPage={props.currentPage} onPageChanged={props.onPageChanged}
                        totalUsersCount={props.totalUsersCount}
                        pageSize={props.pageSize}/>
             <div>

@@ -26,15 +26,17 @@ type InitialStateType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: string[]
+    portionSize:number
 }
 
 let initialState: InitialStateType = {
     users: [] as UsersType,
-    pageSize: 5,
+    pageSize: 10, //5
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: []
+    followingInProgress: [],
+    portionSize: 10
 };
 
 const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE'

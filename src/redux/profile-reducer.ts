@@ -9,11 +9,13 @@ let initialState = {
         {id: 2, message: 'It\'s my first post', likesCont: 11},
     ],
     profile: null as ProfileType | null,
+    friends: [] as ProfileType[],
     status: ""
 };
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_FRIENDS_PROFILE = 'SET_FRIENDS_PROFILE';
 const SET_STATUS = 'profile/SET-STATUS';
 const DELETE_POST = 'profile/DELETE_POST';
 
@@ -40,6 +42,9 @@ export const profileReducer = (state = initialState, action: ProfileActionsType)
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile}
         }
+        case SET_FRIENDS_PROFILE: {
+            return {...state, friends: action.friends}
+        }
         case DELETE_POST: {
             return {...state, posts: state.posts.filter(p=> p.id !== action.postId)}
         }
@@ -52,6 +57,7 @@ export type ProfileActionsType = AddPostACType
     | setUserProfileACType
     | SetStatusACType
     | DeletePostACType
+    | setFriendsProfileACType   //
 
 type AddPostACType = ReturnType<typeof addPostActionCreator>
 export const addPostActionCreator = (newPostText: string) => ({
@@ -73,6 +79,10 @@ export const deletePostAC = (postId: number) => ({
     type: 'profile/DELETE_POST', postId
 } as const)
 
+type setFriendsProfileACType = ReturnType<typeof setFriendsProfileAC>
+export const setFriendsProfileAC = (friends: ProfileType[]) => ({
+    type: 'SET_FRIENDS_PROFILE', friends
+} as const)
 
 // type getUserProfileACType = ReturnType<typeof getUserProfile>
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
@@ -89,5 +99,11 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
                 dispatch(setStatusAC(status));
             }
 }
+
+export const getFriendsProfile = () => async (dispatch: Dispatch) => {
+    let response = await usersAPI.getUsers(1,6, true);
+    dispatch(setFriendsProfileAC(response.items));          //
+}
+
 
 export default profileReducer;

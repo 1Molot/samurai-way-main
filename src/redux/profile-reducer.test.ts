@@ -9,6 +9,7 @@ let state = {
         {id: 4, message: 'Dada', likesCont: 11},
     ],
     profile: null as ProfileType | null,
+    friends: [],
     status: ""
 };
 

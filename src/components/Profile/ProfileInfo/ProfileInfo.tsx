@@ -16,7 +16,11 @@ const ProfileInfo = (props: ProfilePropsType) => {
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <img src={src}/>
+                <div>
+                    <img src={src}/>
+                    {/*{friends}*/}
+                </div>
+
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>

@@ -12,7 +12,8 @@ import {
     getFollowingInProgress,
     getIsFetching,
     getPageSize,
-    getTotalUsersCount
+    getTotalUsersCount,
+    getPortionSize
 } from "../../redux/users-selectors";
 
 //контейнерная компонента
@@ -25,13 +26,14 @@ class UsersContainer extends React.Component<UsersProps> {
     onPageChanged = (pageNumber: number) => {
         this.props.requestUsers(pageNumber, this.props.pageSize);
     }
-
     render() { //дай мне JSX, не делает перерисовку(render)
 
         return (
             <>
                 {this.props.isFetching ? <Preloader/> : null}
-                <Users totalUsersCount={this.props.totalUsersCount}
+                <Users
+                    portionSize={this.props.portionSize}
+                    totalUsersCount={this.props.totalUsersCount}
                        pageSize={this.props.pageSize}
                        currentPage={this.props.currentPage}
                        onPageChanged={this.onPageChanged}
@@ -52,7 +54,8 @@ let mapStateToProps = (state: AppStateType) => {
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        followingInProgress: getFollowingInProgress(state)
+        followingInProgress: getFollowingInProgress(state),
+        portionSize:getPortionSize(state)
     }
 }
 

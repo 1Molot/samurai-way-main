@@ -2,7 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getStatus, getUserProfile, updateStatus} from "../../redux/profile-reducer";
+import {getFriendsProfile, getStatus, getUserProfile, updateStatus} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
@@ -22,10 +22,10 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
             }
         }
 
-        usersAPI.getFriends().then(res => {
-            console.log(res.data)
-        }) //zapixnyt v sanky
-
+        // usersAPI.getFriends().then(res => {
+        //     console.log(res.data)
+        // }) //zapixnyt v sanky
+        this.props.getFriendsProfile()
         this.props.getUserProfile(this.userId);//vbIzov sanki
         this.props.getStatus(this.userId);
     }
@@ -46,7 +46,9 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     render() {
         return (
             <div>
-                <Profile profile={this.props.profile}
+                <Profile
+                    // friends={this.props.friends}
+                    profile={this.props.profile}
                          status={this.props.status}
                          updateStatus={this.props.updateStatus}/>
             </div>
@@ -58,13 +60,15 @@ let mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    friends: state.profilePage.friends
 })
 
 type MapDispatchToPropsType = {
     getUserProfile: (userId: string) => void
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
+    getFriendsProfile:() => void
 }
 
 export type ProfilePropsType =
@@ -77,7 +81,7 @@ type PathParamsType = {
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus,getFriendsProfile}),//
     withRouter,
     // WithAuthRedirect
 )(ProfileContainer);

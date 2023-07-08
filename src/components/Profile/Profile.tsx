@@ -28,12 +28,13 @@ export type ProfilePropsType = {
     profile : ProfileType | null
     status: string
     updateStatus: (status: string) => void
+    // friends: ProfileType[]
 }
 const Profile = (props: ProfilePropsType) => {
 
     return (
         <div>
-            <ProfileInfo   profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
             <MyPostsContainer/>
         </div>
     )
