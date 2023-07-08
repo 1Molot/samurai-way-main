@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+// import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from "./components/Profile/ProfileContainer";
+// import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
 import {connect, Provider} from "react-redux";
@@ -13,9 +13,10 @@ import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import store, {AppStateType} from "./redux/redux-store";
 import Preloader from "./components/common/preloader/Preloader";
-import {Friends} from "./components/Friends/Friends";
+import {WithSuspense} from "./hoc/WithSuspense";
 
-
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 
 export type AllAppPropsType = AppPropsType & {
     initialized: boolean
@@ -42,9 +43,9 @@ class App extends Component<AllAppPropsType> {
                 <HeaderContainer getAuthUserData={getAuthUserData}/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+                    <Route path="/dialogs" render={WithSuspense(DialogsContainer)}/>
 
-                    <Route path="/profile/:userId" render={() => <ProfileContainer/>}/>
+                    <Route path="/profile/:userId" render={WithSuspense(ProfileContainer)}/>
 
                     <Route path="/friends" render={() => <UsersContainer friend={true}/>}/>
 
