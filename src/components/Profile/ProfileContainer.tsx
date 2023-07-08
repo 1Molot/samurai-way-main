@@ -22,11 +22,8 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
             }
         }
 
-        // usersAPI.getFriends().then(res => {
-        //     console.log(res.data)
-        // }) //zapixnyt v sanky
         this.props.getFriendsProfile()
-        this.props.getUserProfile(this.userId);//vbIzov sanki
+        this.props.getUserProfile(this.userId);
         this.props.getStatus(this.userId);
     }
 

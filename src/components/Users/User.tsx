@@ -44,8 +44,10 @@ const User = (props: UserPropsType) => {
               <div>{props.user.status}</div>
           </span>
           <span>
-                <div>{"u.location.country"}</div>
-              <div>{"u.location.city"}</div>
+              {/*  <div>{"u.location.country"}</div>*/}
+              {/*<div>{"u.location.city"}</div>*/}
+              <div>{props.user.location?.country}</div>
+              <div>{props.user.location?.city}</div>
           </span>
               </span>
         </div>

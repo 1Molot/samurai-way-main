@@ -20,11 +20,11 @@ import {
 class UsersContainer extends React.Component<UsersProps> {
 
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize,this.props.friend);
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize);
+        this.props.requestUsers(pageNumber, this.props.pageSize,this.props.friend);
     }
     render() { //дай мне JSX, не делает перерисовку(render)
 
@@ -63,7 +63,7 @@ type MDPType = {
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     setCurrentPage: (pageNumber: number) => void
-    requestUsers: (currentPage: number, pageSize: number) => void
+    requestUsers: (currentPage: number, pageSize: number,friend?:boolean) => void
 }
 
 const mapDispatchToProps = {
@@ -73,9 +73,9 @@ const mapDispatchToProps = {
     requestUsers
 }
 
-export type UsersProps = ReturnType<typeof mapStateToProps> & MDPType
+export type UsersProps = ReturnType<typeof mapStateToProps> & MDPType & {friend?:boolean}
 
-export default compose<React.ComponentType>(
+export default compose<React.ComponentType<any>>(
     //WithAuthRedirect,//защита
     connect(mapStateToProps, mapDispatchToProps)
 )(UsersContainer);

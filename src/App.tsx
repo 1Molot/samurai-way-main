@@ -13,6 +13,8 @@ import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import store, {AppStateType} from "./redux/redux-store";
 import Preloader from "./components/common/preloader/Preloader";
+import {Friends} from "./components/Friends/Friends";
+
 
 
 export type AllAppPropsType = AppPropsType & {
@@ -43,6 +45,8 @@ class App extends Component<AllAppPropsType> {
                     <Route path="/dialogs" render={() => <DialogsContainer/>}/>
 
                     <Route path="/profile/:userId" render={() => <ProfileContainer/>}/>
+
+                    <Route path="/friends" render={() => <UsersContainer friend={true}/>}/>
 
                     <Route path="/users" render={() => {
                         return <UsersContainer/>
