@@ -10,7 +10,8 @@ let state = {
     ],
     profile: null as ProfileType | null,
     friends: [],
-    status: ""
+    status: "",
+    newPostText: ''
 };
 
 it ('length of posts should be incremented', () => {

@@ -1,6 +1,7 @@
 import {ProfileType} from "../components/Profile/Profile";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
+import {UserType} from "./users-reducer";
 
 
 let initialState = {
@@ -9,9 +10,11 @@ let initialState = {
         {id: 2, message: 'It\'s my first post', likesCont: 11},
     ],
     profile: null as ProfileType | null,
-    friends: [] as ProfileType[],
-    status: ""
+    friends: [] as UserType[],
+    status: "",
+    newPostText: ''
 };
+type initStateType = typeof initialState
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -19,7 +22,7 @@ const SET_FRIENDS_PROFILE = 'SET_FRIENDS_PROFILE';
 const SET_STATUS = 'profile/SET-STATUS';
 const DELETE_POST = 'profile/DELETE_POST';
 
-export const profileReducer = (state = initialState, action: ProfileActionsType) => {
+export const profileReducer = (state = initialState, action: ProfileActionsType): initStateType => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
@@ -80,7 +83,7 @@ export const deletePostAC = (postId: number) => ({
 } as const)
 
 type setFriendsProfileACType = ReturnType<typeof setFriendsProfileAC>
-export const setFriendsProfileAC = (friends: ProfileType[]) => ({
+export const setFriendsProfileAC = (friends: UserType[]) => ({
     type: 'SET_FRIENDS_PROFILE', friends
 } as const)
 
