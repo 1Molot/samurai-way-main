@@ -6,7 +6,6 @@ import {getFriendsProfile, getStatus, getUserProfile, updateStatus} from "../../
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
-import {usersAPI} from "../../api/api";
 
 
 class ProfileContainer extends React.Component<ProfilePropsType> {

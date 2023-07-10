@@ -22,7 +22,6 @@ describe("ProfileStatus component", () => {
     });
 
     test("after creation <input> shouldn't be displayed", () => {
-        //esli ne ispolzovat tak mozhno?
         const component = create(<ProfileStatus status="it-kamasutra" updateStatus={() => {
         }}/>);
         const root = component.root;

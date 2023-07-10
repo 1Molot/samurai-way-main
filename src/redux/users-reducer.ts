@@ -149,7 +149,6 @@ type ResponseType = {
     }
 }
 
-//xz
 const followUnfollowFlow = async (userId: string, dispatch: Dispatch, apiMethod: (userId:string) => Promise<AxiosResponse>, actionCreator: (userId: string) => AnyAction) => {
     dispatch(toggleFollowingProgress(true, userId));
     let response = await apiMethod(userId);

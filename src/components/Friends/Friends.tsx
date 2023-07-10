@@ -1,14 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {UserType} from "../../redux/users-reducer";
-import {instance} from "../../api/api";
 import {useDispatch, useSelector} from "react-redux";
 import {getFriendsProfile} from "../../redux/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import s from './friend.module.css'
+import s from './Friend.module.css'
 
-// type FriendsType = {
-//     friends: UserType[]
-// }
 
 export const Friends = () => {
 

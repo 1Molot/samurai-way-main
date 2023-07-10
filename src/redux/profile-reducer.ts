@@ -87,7 +87,6 @@ export const setFriendsProfileAC = (friends: UserType[]) => ({
     type: 'SET_FRIENDS_PROFILE', friends
 } as const)
 
-// type getUserProfileACType = ReturnType<typeof getUserProfile>
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
     let response = await usersAPI.getProfile(userId);
         dispatch(setUserProfileAC(response.data));
