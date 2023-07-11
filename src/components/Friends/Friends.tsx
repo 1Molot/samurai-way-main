@@ -18,9 +18,9 @@ export const Friends = () => {
 
     return (
         <div>
-            {friends?.map((friend) => {
+            {friends?.map((friend,id) => {
                 const {name,photos,status,location} = friend
-                return <div className={s.friendsBlock}>
+                return <div key={id} className={s.friendsBlock}>
                     <img src={photos?.large ?? ''} alt="images-user"/>
                     <span>{name}</span>
                     <span>{status}</span>

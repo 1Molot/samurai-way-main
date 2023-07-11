@@ -43,7 +43,7 @@ class App extends Component<AllAppPropsType> {
                 <div className='app-wrapper-content'>
                     <Route path="/dialogs" render={WithSuspense(DialogsContainer)}/>
 
-                    <Route path="/profile/:userId" render={WithSuspense(ProfileContainer)}/>
+                    <Route path="/profile/:userId?" render={WithSuspense(ProfileContainer)}/>
 
                     <Route path="/friends" render={() => <UsersContainer friend={true}/>}/>
 

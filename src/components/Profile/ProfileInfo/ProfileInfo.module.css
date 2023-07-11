@@ -1,0 +1,23 @@
+.descriptionBlock {
+    padding: 10px;
+}
+
+.mainPhoto {
+    max-width: 200px;
+    height: 200px;
+
+}
+
+.button {
+    max-width: 60px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: greenyellow;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #F35C16FF;
+}

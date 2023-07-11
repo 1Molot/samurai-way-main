@@ -2,7 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getFriendsProfile, getStatus, getUserProfile, updateStatus} from "../../redux/profile-reducer";
+import {getFriendsProfile, getStatus, getUserProfile, savePhoto, updateStatus} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
@@ -12,30 +12,26 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 
     private userId: string | null = null;
 
-    componentDidMount() {
+    refreshProfile() {
         this.userId = this.props.match.params.userId;
         if (!this.userId) {
-            this.userId = String(this.props.authorizedUserId)//String(28786); //moi
+            this.userId = String(this.props.authorizedUserId)
             if (!this.userId) {
                 this.props.history.push("login")
             }
         }
-
         this.props.getFriendsProfile()
         this.props.getUserProfile(this.userId);
         this.props.getStatus(this.userId);
     }
 
+    componentDidMount() {
+        this.refreshProfile();
+    }
+
     componentDidUpdate(prevProps: Readonly<ProfilePropsType>, prevState: Readonly<{}>, snapshot?: any) {
-
-        const paramId = this.props.match.params.userId
-
-        if(this.userId !== paramId) {
-
-            this.userId = paramId;
-
-            this.props.getUserProfile(this.userId);
-            this.props.getStatus(this.userId);
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.refreshProfile();
         }
     }
 
@@ -43,10 +39,13 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
         return (
             <div>
                 <Profile
-                    // friends={this.props.friends}
+                    isOwner={!this.props.match.params.userId}
                     profile={this.props.profile}
-                         status={this.props.status}
-                         updateStatus={this.props.updateStatus}/>
+                    status={this.props.status}
+                    updateStatus={this.props.updateStatus}
+                    savePhoto={this.props.savePhoto}
+                />
+
             </div>
         )
     }
@@ -64,7 +63,8 @@ type MapDispatchToPropsType = {
     getUserProfile: (userId: string) => void
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
-    getFriendsProfile:() => void
+    getFriendsProfile: () => void
+    savePhoto: (file: File) => void
 }
 
 export type ProfilePropsType =
@@ -77,7 +77,7 @@ type PathParamsType = {
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus,getFriendsProfile}),//
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, getFriendsProfile, savePhoto}),//
     withRouter,
     // WithAuthRedirect
 )(ProfileContainer);

@@ -1,4 +1,4 @@
-import {ProfileType} from "../components/Profile/Profile";
+import {PhotosType, ProfileType} from "../components/Profile/Profile";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 import {UserType} from "./users-reducer";
@@ -12,7 +12,7 @@ let initialState = {
     profile: null as ProfileType | null,
     friends: [] as UserType[],
     status: "",
-    newPostText: ''
+    newPostText: '',
 };
 type initStateType = typeof initialState
 
@@ -21,6 +21,7 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_FRIENDS_PROFILE = 'SET_FRIENDS_PROFILE';
 const SET_STATUS = 'profile/SET-STATUS';
 const DELETE_POST = 'profile/DELETE_POST';
+const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS';
 
 export const profileReducer = (state = initialState, action: ProfileActionsType): initStateType => {
     switch (action.type) {
@@ -51,6 +52,15 @@ export const profileReducer = (state = initialState, action: ProfileActionsType)
         case DELETE_POST: {
             return {...state, posts: state.posts.filter(p=> p.id !== action.postId)}
         }
+        case SAVE_PHOTO_SUCCESS: {
+
+            if(state.profile){
+
+                return {...state, profile: {...state.profile, photos: action.photos }}
+            }
+
+            return state
+        }
         default:
             return state
     }
@@ -60,7 +70,8 @@ export type ProfileActionsType = AddPostACType
     | setUserProfileACType
     | SetStatusACType
     | DeletePostACType
-    | setFriendsProfileACType   //
+    | setFriendsProfileACType
+    | savePhotoSuccessACType
 
 type AddPostACType = ReturnType<typeof addPostActionCreator>
 export const addPostActionCreator = (newPostText: string) => ({
@@ -87,6 +98,11 @@ export const setFriendsProfileAC = (friends: UserType[]) => ({
     type: 'SET_FRIENDS_PROFILE', friends
 } as const)
 
+type savePhotoSuccessACType = ReturnType<typeof savePhotoSuccessAC> //
+export const savePhotoSuccessAC = (photos:PhotosType) => ({
+    type: SAVE_PHOTO_SUCCESS, photos
+} as const)
+
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
     let response = await usersAPI.getProfile(userId);
         dispatch(setUserProfileAC(response.data));
@@ -101,10 +117,16 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
                 dispatch(setStatusAC(status));
             }
 }
+export const savePhoto = (file: any) => async (dispatch: Dispatch) => {   //
+    let response = await profileAPI.savePhoto(file);
+            if (response.data.resultCode === 0) {
+                dispatch(savePhotoSuccessAC(response.data.data.photos));
+            }
+}
 
 export const getFriendsProfile = () => async (dispatch: Dispatch) => {
     let response = await usersAPI.getUsers(1,6, true);
-    dispatch(setFriendsProfileAC(response.items));          //
+    dispatch(setFriendsProfileAC(response.items));
 }
 
 
