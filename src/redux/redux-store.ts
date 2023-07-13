@@ -1,9 +1,9 @@
-import {applyMiddleware, createStore} from 'redux'
+import {AnyAction, applyMiddleware, createStore} from 'redux'
 import {combineReducers} from "redux";
 import dialogsReducer from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
 import {profileReducer} from "./profile-reducer";
-import thunkMiddleware from "redux-thunk";
+import thunkMiddleware, {ThunkDispatch} from "redux-thunk";
 import {reducer as formReducer} from 'redux-form'
 import authReducer from "./auth-reducer";
 import appReducer from "./app-reducer";
@@ -23,6 +23,7 @@ let rootReducer = combineReducers({
 let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export type AppStateType = ReturnType<typeof rootReducer>
+export type AppDispatch = ThunkDispatch<AppStateType, unknown, AnyAction>
 
 // @ts-ignore
 window.store = store;

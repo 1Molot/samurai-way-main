@@ -1,4 +1,6 @@
 import axios from "axios";
+import {ProfileType} from "../components/Profile/Profile";
+import {ProfileFormData} from "../components/Profile/ProfileInfo/ProfileDataForm";
 
 
 export const instance = axios.create({
@@ -36,7 +38,7 @@ export const profileAPI = {
     updateStatus(status:string) {
         return instance.put(`profile/status/`, {status:status})
     },
-    savePhoto(photoFile:any) {                           //
+    savePhoto(photoFile:File) {                           //
         const formData = new FormData();
         formData.append("image",photoFile);
         return instance.put(`profile/photo/`, formData,{
@@ -44,6 +46,9 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         });
+    },
+    saveProfile(profile: ProfileFormData) {
+        return instance.put(`profile/`, profile)
     }
 }
 

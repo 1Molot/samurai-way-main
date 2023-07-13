@@ -2,6 +2,9 @@ import {PhotosType, ProfileType} from "../components/Profile/Profile";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 import {UserType} from "./users-reducer";
+import {AppDispatch, AppStateType} from "./redux-store";
+import {stopSubmit} from "redux-form";
+import {ProfileFormData} from "../components/Profile/ProfileInfo/ProfileDataForm";
 
 
 let initialState = {
@@ -117,11 +120,24 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
                 dispatch(setStatusAC(status));
             }
 }
-export const savePhoto = (file: any) => async (dispatch: Dispatch) => {   //
+export const savePhoto = (file: File) => async (dispatch: Dispatch) => {   //
     let response = await profileAPI.savePhoto(file);
             if (response.data.resultCode === 0) {
                 dispatch(savePhotoSuccessAC(response.data.data.photos));
             }
+}
+                                                                 //dispatch: ThunkDispatch<any, any, any>
+export const saveProfile = (profile: ProfileFormData) => async (dispatch: AppDispatch, getState:() => AppStateType):Promise<any> => {
+    const userId = getState().auth.userId
+    const response = await profileAPI.saveProfile(profile);
+
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfile(String(userId)))
+        return Promise.resolve({})
+    }else{                                            //{"contacts": {"facebook": response.data.messages[0]}}
+        dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0]}))
+        return Promise.reject(response.data.messages[0])
+    }
 }
 
 export const getFriendsProfile = () => async (dispatch: Dispatch) => {

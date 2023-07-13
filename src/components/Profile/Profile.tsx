@@ -1,6 +1,7 @@
 import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {ProfileFormData} from "./ProfileInfo/ProfileDataForm";
 
 export type PhotosType = {
     small: string
@@ -8,16 +9,16 @@ export type PhotosType = {
 }
 
 export type ProfileType = {
-    aboutMe: string | undefined,
+    aboutMe: string | null,
     contacts: {
-        facebook: string,
-        website: null,
-        vk: string,
-        twitter: string,
-        instagram: string,
-        youtube: null,
-        github: string,
-        mainLink: null
+        facebook: string | null,
+        website: string | null,
+        vk: string | null,
+        twitter: string | null,
+        instagram: string | null,
+        youtube: string | null,
+        github: string | null,
+        mainLink: string | null
     },
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
@@ -30,13 +31,19 @@ export type ProfilePropsType = {
     status: string
     updateStatus: (status: string) => void
     isOwner:boolean
-    savePhoto:any //
+    savePhoto:(file: File) => void
+    saveProfile:(profile: ProfileFormData) => Promise<void>
 }
 const Profile = (props: ProfilePropsType) => {
 
     return (
         <div>
-            <ProfileInfo savePhoto={props.savePhoto} isOwner={props.isOwner} profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileInfo savePhoto={props.savePhoto}
+                         isOwner={props.isOwner}
+                         profile={props.profile}
+                         status={props.status}
+                         saveProfile={props.saveProfile}
+                         updateStatus={props.updateStatus}/>
             <MyPostsContainer/>
         </div>
     )
