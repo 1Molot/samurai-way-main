@@ -23,7 +23,8 @@ export type AllPropsType = PropsType & {
 
 export type AllPropsTypeForLoginComponent =  {
     isAuth: boolean | null,
-    login: (email:string,password:string,rememberMe:boolean) => void,
+    captchaUrl:string | null
+    login: (email:string,password:string,rememberMe:boolean, captcha:string | null) => void,
 }
 
 const mapStateToProps = (state:AppStateType) => ({

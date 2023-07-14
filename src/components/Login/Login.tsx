@@ -9,7 +9,7 @@ import {AppStateType} from "../../redux/redux-store";
 const Login = (props:AllPropsTypeForLoginComponent) => {
 
     const onSubmit = (formData:LoginFormDataType) => {
-        props?.login?.(formData.email,formData.password,formData.rememberMe)
+        props?.login?.(formData.email,formData.password,formData.rememberMe,formData.captcha)
     }
 
     if (props.isAuth) {
@@ -19,13 +19,14 @@ const Login = (props:AllPropsTypeForLoginComponent) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
         </div>
     )
 }
 
 const mapStateToProps = (state:AppStateType) => ({
-    isAuth: state.auth.isAuth,
+    captchaUrl:state.auth.captchaUrl,
+    isAuth: state.auth.isAuth
 })
 
 export default connect(mapStateToProps,{login})(Login);
