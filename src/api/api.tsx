@@ -1,5 +1,4 @@
 import axios from "axios";
-import {ProfileType} from "../components/Profile/Profile";
 import {ProfileFormData} from "../components/Profile/ProfileInfo/ProfileDataForm";
 
 
