@@ -1,15 +1,33 @@
 
 .header {
     grid-area: header;
-    background-color: green;
+    background-color: rgba(81, 84, 211, 0.65);
+    -webkit-box-shadow: 3px 5px 43px 17px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 3px 5px 43px 17px rgba(34, 60, 80, 0.2);
+    box-shadow: 3px 5px 43px 17px rgba(34, 60, 80, 0.2);
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
 }
-
+.loginText {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
 .header img {
-    width: 20px;
+    width: 32px;
+    object-fit: cover;
 }
 
 .loginBlock {
     float: right;
+    & button {
+        width: 100px;
+        height: 40px;
+        border: none;
+        background: rgba(225, 217, 217, 0.73);
+        border-radius: 16px;
+    }
 }
 
 .loginBlock a {

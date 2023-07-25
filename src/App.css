@@ -1,6 +1,6 @@
 .app-wrapper {
     display: grid;
-    width: 1200px;
+    /*width: 1200px;*/
     margin: 0 auto;
     grid-template-areas:
           'header header'
@@ -8,11 +8,21 @@
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
     /*grid-gap: 10px;*/
+    height: 100vh;
 }
 
 .app-wrapper-content {
     grid-area: content;
-    background-color: cornflowerblue;
+    background-color: rgba(203, 178, 208, 0.19);
+    -webkit-box-shadow: 3px 5px 43px 17px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 3px 5px 43px 17px rgba(34, 60, 80, 0.2);
+    box-shadow: 3px 5px 43px 17px rgba(34, 60, 80, 0.2);
+}
+
+@media screen and (max-width: 768px) {
+    .app-wrapper {
+        height: 100%;
+    }
 }
 
 
@@ -21,41 +31,3 @@
 
 
 
-/*.App {*/
-/*  text-align: center;*/
-/*}*/
-
-/*.App-logo {*/
-/*  height: 40vmin;*/
-/*  pointer-events: none;*/
-/*}*/
-
-/*@media (prefers-reduced-motion: no-preference) {*/
-/*  .App-logo {*/
-/*    animation: App-logo-spin infinite 20s linear;*/
-/*  }*/
-/*}*/
-
-/*.App-header {*/
-/*  background-color: #282c34;*/
-/*  min-height: 100vh;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  font-size: calc(10px + 2vmin);*/
-/*  color: white;*/
-/*}*/
-
-/*.App-link {*/
-/*  color: #61dafb;*/
-/*}*/
-
-/*@keyframes App-logo-spin {*/
-/*  from {*/
-/*    transform: rotate(0deg);*/
-/*  }*/
-/*  to {*/
-/*    transform: rotate(360deg);*/
-/*  }*/
-/*}*/

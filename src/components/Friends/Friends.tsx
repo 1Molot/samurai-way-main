@@ -17,7 +17,7 @@ export const Friends = () => {
 
 
     return (
-        <div>
+        <div className={s.friendsContainer}>
             {friends?.map((friend,id) => {
                 const {name,photos,status,location} = friend
                 return <div key={id} className={s.friendsBlock}>

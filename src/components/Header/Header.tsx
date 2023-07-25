@@ -8,11 +8,11 @@ const Header = (props:AllPropsType) => {
 
     return (
         <header className={s.header}>
-            <img src='https://img.freepik.com/premium-vector/aa-letter-monogram-bold-company-name-logo_609138-89.jpg?w=740'/>
+            <img src='https://www.svgrepo.com/show/261808/api.svg'/>
 
             <div className={s.loginBlock}>
                 { props.isAuth ?
-                    <div>{props.login} - <button onClick={()=>{
+                    <div className={s.loginText} >{props.login} - <button onClick={()=>{
                         props.logout()
                     }
                     }>Log out</button> </div>
