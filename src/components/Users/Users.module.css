@@ -1,4 +1,14 @@
 .userPhoto {
     width: 100px;
     height: 100px;
+    padding:10px;
 }
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    overflow: hidden;
+    gap:10px;
+}
+

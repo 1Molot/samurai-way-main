@@ -5,6 +5,7 @@ import {login} from "../../redux/auth-reducer";
 import {AllPropsTypeForLoginComponent} from "../Header/HeaderContainer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
+import s from './Login.module.css';
 
 const Login = (props:AllPropsTypeForLoginComponent) => {
 
@@ -17,7 +18,7 @@ const Login = (props:AllPropsTypeForLoginComponent) => {
     }
 
     return (
-        <div>
+        <div className={s.login}>
             <h1>Login</h1>
             <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
         </div>

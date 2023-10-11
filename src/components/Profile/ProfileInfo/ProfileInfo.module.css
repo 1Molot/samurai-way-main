@@ -1,11 +1,11 @@
 .descriptionBlock {
     padding: 10px;
+    width: 100%;
 }
 
 .mainPhoto {
     max-width: 200px;
     height: 200px;
-
 }
 
 .button {
@@ -24,4 +24,14 @@
 
 .contact {
     padding-left: 10px;
+}
+
+.info {
+    width:100%;
+}
+
+@media (max-width: 767px) {
+    .info {
+        font-size: 14px;
+    }
 }

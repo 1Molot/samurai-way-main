@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getFriendsProfile} from "../../redux/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import s from './Friend.module.css'
-
+import useMockImg from '../../assets/imges/myPhoto.png'
 
 export const Friends = () => {
 
@@ -19,16 +19,17 @@ export const Friends = () => {
     return (
         <div className={s.friendsContainer}>
             {friends?.map((friend,id) => {
+
                 const {name,photos,status,location} = friend
+                console.log(photos?.large)
                 return <div key={id} className={s.friendsBlock}>
-                    <img src={photos?.large ?? ''} alt="images-user"/>
+                    <img src={photos?.large ?? useMockImg} alt="images-user"/>
                     <span>{name}</span>
                     <span>{status}</span>
                     <span>{location?.city ?? ''}</span>
                     <span>{location?.country ?? ''}</span>
                 </div>
             })}
-
         </div>
     )
 }

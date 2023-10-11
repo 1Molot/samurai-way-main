@@ -27,7 +27,7 @@ const Paginator = (props: PaginatorType) => {
     return (
         <div className={styles.paginator}>
             {portionNumber > 1 &&
-            <button onClick={()=> {setPortionNumber(portionNumber -1)}}>PREV</button>}
+            <button className={styles.pagButton} onClick={()=> {setPortionNumber(portionNumber -1)}}>PREV</button>}
 
             {pages
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
@@ -41,9 +41,8 @@ const Paginator = (props: PaginatorType) => {
                              }}>{p}</span>
             })}
             {portionCount > portionNumber &&
-            <button onClick={() => {setPortionNumber(portionNumber + 1)}}>NEXT</button>}
+            <button className={styles.pagButton} onClick={() => {setPortionNumber(portionNumber + 1)}}>NEXT</button>}
         </div>
     )
 }
-
 export default Paginator;

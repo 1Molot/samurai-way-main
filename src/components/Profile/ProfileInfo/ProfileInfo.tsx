@@ -60,8 +60,6 @@ export type ProfileDataType = {
     goToEditMode: () => void
 }
 
-
-
 export const ProfileData = (props: ProfileDataType) => {
     const {contacts} = props.profile
 
@@ -73,7 +71,7 @@ export const ProfileData = (props: ProfileDataType) => {
         return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
     })
     return (
-        <div>
+        <div className={s.info}>
             {props.isOwner && <div>
                 <button onClick={props.goToEditMode}>edit</button>
             </div>}

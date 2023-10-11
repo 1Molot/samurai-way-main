@@ -7,13 +7,13 @@ import Preloader from "../common/preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {
-    getUsers,
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
     getPageSize,
+    getPortionSize,
     getTotalUsersCount,
-    getPortionSize
+    getUsers
 } from "../../redux/users-selectors";
 
 //контейнерная компонента
@@ -76,7 +76,7 @@ const mapDispatchToProps = {
 export type UsersProps = ReturnType<typeof mapStateToProps> & MDPType & {friend?:boolean}
 
 export default compose<React.ComponentType<any>>(
-    //WithAuthRedirect,//защита
+    WithAuthRedirect,
     connect(mapStateToProps, mapDispatchToProps)
 )(UsersContainer);
 

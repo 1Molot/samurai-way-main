@@ -34,3 +34,18 @@
     color: white;
 }
 
+@media screen and (max-width: 768px) {
+    .header {
+        justify-content: flex-start;
+        gap:140px;
+    }
+    .header img {
+        padding-left: 10px;
+    }
+    .loginBlock {
+        & button {
+            width: 80px;
+        }
+    }
+}
+

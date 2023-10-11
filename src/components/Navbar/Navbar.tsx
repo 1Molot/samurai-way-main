@@ -5,7 +5,6 @@ import {Friends} from "../Friends/Friends";
 
 const Navbar = () => {
 
-
     return (
         <nav className={s.nav}>
            <div>

@@ -1,6 +1,8 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
+    width: 100%;
+    padding: 10px;
 }
 
 .dialogsItems {
@@ -18,4 +20,17 @@
 
 .messages .message {
 color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .dialogs {
+        grid-template-columns: 1fr 1fr;
+        padding-left: 10px;
+    }
+    .dialogsItems {
+       width: 70px;
+    }
+    .messages {
+        width: 70px;
+    }
 }

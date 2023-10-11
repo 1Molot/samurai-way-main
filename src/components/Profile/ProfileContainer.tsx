@@ -1,5 +1,5 @@
 import React from "react";
-import Profile, {ProfileType} from "./Profile";
+import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
@@ -89,5 +89,5 @@ type PathParamsType = {
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, getFriendsProfile, savePhoto, saveProfile}),//
     withRouter,
-    // WithAuthRedirect
+    WithAuthRedirect
 )(ProfileContainer);

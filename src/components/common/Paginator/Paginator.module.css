@@ -1,11 +1,11 @@
 
 .paginator {
-    margin:10px;
+    margin: 10px;
 }
 
 .pageNumber {
     padding: 2px;
-    border:1px solid grey;
+    border: 1px solid grey;
 }
 
 .pageNumber.selectedPage {
@@ -13,3 +13,14 @@
     border-color: black;
 }
 
+.pagButton {
+    margin: 10px;
+    background-color: rgba(81, 84, 211, 0.65);
+}
+
+@media screen and (max-width: 768px) {
+    .paginator {
+        margin: -2px;
+        padding: 1px;
+    }
+}

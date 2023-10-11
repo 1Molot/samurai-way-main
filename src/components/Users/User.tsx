@@ -4,6 +4,7 @@ import usersPhoto from "../../assets/imges/user.png";
 import {NavLink} from "react-router-dom";
 import {UserType} from "../../redux/users-reducer";
 
+
 export type UserPropsType = {
     user: UserType
     followingInProgress: string[]

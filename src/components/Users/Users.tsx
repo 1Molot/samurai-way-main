@@ -2,6 +2,7 @@ import React from 'react';
 import {UserType} from "../../redux/users-reducer";
 import Paginator from "../common/Paginator/Paginator";
 import User from "./User";
+import styles from "./Users.module.css";
 
 export type UsersPropsType = {
     totalUsersCount: number
@@ -24,7 +25,7 @@ const Users = (props: UsersPropsType) => {
                 currentPage={props.currentPage} onPageChanged={props.onPageChanged}
                        totalUsersCount={props.totalUsersCount}
                        pageSize={props.pageSize}/>
-            <div>
+            <div className={styles.users}>
             {
                 props.users.map(u => <User user={u}
                                            followingInProgress={props.followingInProgress}

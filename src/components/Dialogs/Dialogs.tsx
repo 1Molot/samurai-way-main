@@ -5,7 +5,6 @@ import Message from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
 import {AddMessageFormRedux, MessageFormDataType} from "./AddMessageForm";
 
-
 const Dialogs = (props: DialogsPropsType) => {
 
     let state = props.dialogsPage
@@ -28,6 +27,5 @@ const Dialogs = (props: DialogsPropsType) => {
         </div>
     )
 }
-
 
 export default Dialogs

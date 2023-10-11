@@ -2,30 +2,9 @@ import React from "react";
 import s from './ProfileInfo.module.css';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input, Textarea} from "../../common/FormsControls/FormsControls";
-import {Contact} from "./ProfileInfo";
 import {ProfileType} from "../Profile";
 import styles from "../../common/FormsControls/FormsControls.module.css";
 
-
-// export type ContactsType = {
-//     github: string
-//     vk: string
-//     facebook: string
-//     instagram: string
-//     twitter: string
-//     website: string
-//     youtube: string
-//     mainLink: string
-// }
-//
-// export type ProfileDataFormType = {
-//     profile : ProfileType
-//     error:string
-//     fullName:string
-//     lookingForAJob:string
-//     lookingForAJobDescription:string
-//     contacts: ContactsType
-// }
 
 export type ProfileFormData =  {
     fullName: string
@@ -83,8 +62,6 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileFormData, PropsType> & 
         </form>
     )
 }
-// <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
-
 
 const ProfileDataFormReduxForm = reduxForm<ProfileFormData, PropsType>({form: 'edit-profile'})(ProfileDataForm)
 
