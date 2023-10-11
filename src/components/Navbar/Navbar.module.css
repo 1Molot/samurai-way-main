@@ -1,7 +1,7 @@
 .nav {
     grid-area: nav;
     background-color: rgba(69, 52, 105, 0.45);
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

@@ -90,8 +90,11 @@ export const ProfileData = (props: ProfileDataType) => {
             <div>
                 <b>About me</b>: {props.profile.aboutMe}
             </div>
-            <div>
-                <b>Contacts</b>:{keysContackts}
+            <div className={s.contacts}>
+                <div>
+                    <b>Contacts</b>:{drawContacts}
+                </div>
+
             </div>
         </div>
     )

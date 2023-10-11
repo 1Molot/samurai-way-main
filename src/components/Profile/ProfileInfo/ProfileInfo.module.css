@@ -1,15 +1,17 @@
 .descriptionBlock {
     padding: 10px;
+    max-width: 600px;
     width: 100%;
 }
 
 .mainPhoto {
-    max-width: 200px;
-    height: 200px;
+    max-width: 100%;
+    height: auto;
 }
 
 .button {
-    max-width: 60px;
+    width: 100%;
+    max-width: 200px;
     height: 30px;
     margin: 5px;
     border-radius: 10px;
@@ -28,10 +30,38 @@
 
 .info {
     width:100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.contacts > div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.contacts > div b {
+    margin-right: 5px;
 }
 
 @media (max-width: 767px) {
+    .descriptionBlock {
+        padding: 10px;
+    }
+
     .info {
-        font-size: 14px;
+        max-width:90%;
+        font-size: 16px;
+    }
+    .contacts {
+        max-width: 100%;
     }
 }
