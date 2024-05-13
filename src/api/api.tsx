@@ -3,10 +3,11 @@ import {ProfileFormData} from "../components/Profile/ProfileInfo/ProfileDataForm
 
 
 export const instance = axios.create({
-    withCredentials: true,
+    //withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        'API-KEY': 'e7931c25-37d3-4feb-a7b5-21f44ccacb05'
+        'API-KEY': 'de0c020c-dd6c-405b-bbe4-e54523e78d81',
+        "Authorization": "Bearer 786566ee-a0d5-4dd1-b899-5bc981895f5a"
     }
 });
 
